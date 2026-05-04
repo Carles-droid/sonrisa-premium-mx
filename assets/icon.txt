@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" shape-rendering="geometricPrecision">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap');
+      
+      .bg-white { fill: #FFFFFF; }
+      .brand-blue { fill: #004AAD; }
+      .brand-green { fill: #00C897; }
+      .text-primary { 
+        fill: #1A1A1A; 
+        font-family: 'Montserrat', sans-serif, Arial; 
+        font-weight: 700; 
+        font-size: 42px; 
+        text-transform: uppercase;
+      }
+      .text-secondary { 
+        fill: #555555; 
+        font-family: 'Montserrat', sans-serif, Arial; 
+        font-weight: 400; 
+        font-size: 15px; 
+        letter-spacing: 8.5px; 
+        text-transform: uppercase;
+      }
+    </style>
+  </defs>
+
+  <g id="Isotipo" transform="translate(40, 25)">
+    <path class="brand-blue" d="M55,0 C25,0 10,15 10,45 C10,75 22,95 32,105 C38,110 45,108 48,100 C51,92 53,82 55,82 C57,82 59,92 62,100 C65,108 72,110 78,105 C88,95 100,75 100,45 C100,15 85,0 55,0 Z" />
+    
+    <path class="brand-green" d="M32,55 C42,72 68,72 78,55 C79,53 78,51 76,52 C68,58 42,58 34,52 C32,51 31,53 32,55 Z" />
+  </g>
+
+</svg>

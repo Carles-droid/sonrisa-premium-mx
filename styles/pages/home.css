@@ -1,0 +1,670 @@
+/*
+ * ============================================================
+ * SONRISA PREMIUM MX — home.css
+ * Estilos específicos de la página de inicio (index.html)
+ *
+ * Depende de: tokens.css · reset.css · layout.css · components.css
+ * Scope: solo aplica a index.html — no reutilizar en otras páginas
+ *
+ * Responsabilidad de este archivo:
+ *   - Ajustes de composición visual únicos del Home
+ *   - Alternancia de fondos entre secciones
+ *   - Tipografía de sección específica del Home
+ *   - Decoraciones y detalles visuales del landing
+ *   - Sobreescrituras de layout para el contexto específico
+ *   - Animaciones de entrada (intersection observer)
+ *
+ * Orden de bloques:
+ *   1.  Tokens locales del Home
+ *   2.  Hero — ajustes Home
+ *   3.  Shape Dividers — colores del Home
+ *   4.  Servicios Destacados — ajustes Home
+ *   5.  Experiencia Premium — ajustes Home
+ *   6.  Nosotros — ajustes Home
+ *   7.  Dentistas Preview — ajustes Home
+ *   8.  Mapa / Ubicación — ajustes Home
+ *   9.  Ritmo de fondos (alternancia de secciones)
+ *  10.  Animaciones de entrada (scroll-driven)
+ *
+ * Autor: Insomne × Sonrisa Premium MX
+ * ============================================================
+ */
+
+/* ==========================================================
+   1. TOKENS LOCALES DEL HOME
+   Variables de scope reducido — solo para este archivo.
+   Prefijo: --home-* para distinguirlas de los tokens globales.
+   ========================================================== */
+
+:root {
+  /* ── Orden de capas de fondo en el Home ── */
+  --home-seccion-1-bg: var(--color-fondo-pagina); /* ServiciosDestacados */
+  --home-seccion-2-bg: var(--color-fondo-primario); /* ExperienciaPremium  */
+  --home-seccion-3-bg: var(--color-fondo-terciario); /* Nosotros            */
+  --home-seccion-4-bg: var(--color-fondo-pagina); /* DentistasPreview    */
+  --home-seccion-5-bg: var(--color-fondo-pagina); /* MapaUbicacion       */
+
+  /* ── Decoraciones ── */
+  --home-accent-line-width: 3px;
+  --home-accent-line-color: var(--color-secundario);
+  --home-section-label-size: var(--texto-xs);
+  --home-section-label-color: var(--color-texto-terciario);
+
+  /* ── Animaciones de entrada ── */
+  --home-entrada-duracion: var(--duracion-muy-lenta);
+  --home-entrada-delay-step: 80ms;
+  --home-entrada-translate-y: 28px;
+  --home-entrada-scale: 0.97;
+}
+
+/* ==========================================================
+   2. HERO — AJUSTES HOME
+   Estilos de presentación específicos del hero del Home.
+   El posicionamiento estructural está en layout.css.
+   ========================================================== */
+
+/*
+ * Etiqueta "label" flotante encima del headline.
+ * Microdetalle de branding: ubica al visitante antes de leer.
+ */
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin-bottom: var(--espacio-4);
+  padding: var(--espacio-1-5) var(--espacio-4);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: var(--radio-pill);
+  background-color: rgba(201, 168, 76, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.hero__eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radio-circulo);
+  background-color: var(--color-secundario);
+  flex-shrink: 0;
+
+  /* Pulso suave: indica disponibilidad en tiempo real */
+  animation: heroPulse 2.4s ease-in-out infinite;
+}
+
+.hero__eyebrow-text {
+  font-family: var(--fuente-secundaria);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--color-secundario);
+}
+
+@keyframes heroPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+/*
+ * Línea decorativa de acento bajo el headline.
+ * Refuerza el primario con el color oro de la paleta.
+ */
+.hero__headline::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-top: var(--espacio-4);
+}
+
+/* En desktop el headline es left-aligned — la línea también */
+@media (min-width: 768px) {
+  .hero__headline::after {
+    margin-left: 0;
+  }
+}
+
+/* En mobile centrado */
+@media (max-width: 767px) {
+  .hero__headline::after {
+    margin-inline: auto;
+  }
+}
+
+/*
+ * Scroll indicator: flecha animada en la parte inferior del hero.
+ * Guía visual suave para que el usuario haga scroll.
+ */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--espacio-10);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espacio-1-5);
+  animation: scrollBounce 2s ease-in-out infinite;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+/* Ocultar si hay indicadores del slider en la misma zona */
+@media (max-width: 767px) {
+  .hero__scroll-indicator {
+    display: none;
+  }
+}
+
+.hero__scroll-indicator-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+}
+
+.hero__scroll-indicator-text {
+  font-family: var(--fuente-secundaria);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  writing-mode: vertical-rl;
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================
+   3. SHAPE DIVIDERS — COLORES DEL HOME
+   El color de relleno SVG debe coincidir con el fondo de la
+   sección que viene inmediatamente después del divider.
+   ========================================================== */
+
+/*
+ * Shape Divider #1: entre Hero y ServiciosDestacados.
+ * El SVG debe tener el color del fondo de ServiciosDestacados.
+ */
+.shape-divider--home-1 svg path {
+  fill: var(--home-seccion-1-bg);
+}
+
+/*
+ * Shape Divider #2: entre DentistasPreview y MapaUbicacion.
+ * El SVG debe tener el color del fondo de la sección anterior
+ * para crear el efecto de "fade out hacia la siguiente".
+ */
+.shape-divider--home-2 svg path {
+  fill: var(--home-seccion-5-bg);
+}
+
+/* ==========================================================
+   4. SERVICIOS DESTACADOS — AJUSTES HOME
+   ========================================================== */
+
+/*
+ * Línea decorativa de acento sobre el título de sección.
+ * Patrón visual consistente en todas las secciones del Home.
+ */
+.servicios-destacados__header::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-inline: auto;
+  margin-bottom: var(--espacio-4);
+}
+
+/*
+ * Label de sección: texto pequeño en mayúsculas sobre el título.
+ * Ubica semánticamente al visitante ("Nuestros tratamientos").
+ */
+.servicios-destacados__label {
+  display: block;
+  font-family: var(--fuente-secundaria);
+  font-size: var(--home-section-label-size);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--home-section-label-color);
+  margin-bottom: var(--espacio-3);
+}
+
+/*
+ * Borde inferior decorativo en la card al hacer hover.
+ * Refuerzo visual del color de acento oro.
+ */
+.servicio-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradiente-secundario);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--duracion-normal) var(--ease-out);
+  border-radius: 0 0 var(--card-radio) var(--card-radio);
+}
+
+.servicio-card {
+  position: relative;
+}
+
+.servicio-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================
+   5. EXPERIENCIA PREMIUM — AJUSTES HOME
+   ========================================================== */
+
+/*
+ * Línea decorativa antes del título (mismo patrón que Servicios).
+ */
+.experiencia-premium__title::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-bottom: var(--espacio-5);
+}
+
+/*
+ * Label de sección.
+ */
+.experiencia-premium__label {
+  display: block;
+  font-family: var(--fuente-secundaria);
+  font-size: var(--home-section-label-size);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--home-section-label-color);
+  margin-bottom: var(--espacio-3);
+}
+
+/*
+ * Badge decorativo sobre la imagen: "Premium MX".
+ * Comunica la categoría de la clínica de forma visual.
+ */
+.experiencia-premium__badge {
+  position: absolute;
+  bottom: var(--espacio-5);
+  right: calc(var(--espacio-5) * -1);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radio-circulo);
+  background: var(--gradiente-secundario);
+  box-shadow: var(--sombra-xl), var(--sombra-secundario);
+  padding: var(--espacio-3);
+  text-align: center;
+}
+
+/* En mobile el badge se reposiciona para no salir de pantalla */
+@media (max-width: 767px) {
+  .experiencia-premium__badge {
+    right: var(--espacio-4);
+    bottom: var(--espacio-4);
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.experiencia-premium__badge-value {
+  font-family: var(--fuente-principal);
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-bold);
+  line-height: 1;
+  color: var(--color-primario-oscuro);
+}
+
+.experiencia-premium__badge-label {
+  font-family: var(--fuente-secundaria);
+  font-size: 7px;
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--color-primario-oscuro);
+  line-height: var(--linea-compacta);
+}
+
+/*
+ * Wrapper del media block con posición relativa para el badge.
+ */
+.experiencia-premium__media {
+  position: relative;
+}
+
+/* ==========================================================
+   6. NOSOTROS — AJUSTES HOME
+   ========================================================== */
+
+/*
+ * Línea decorativa antes del título.
+ */
+.nosotros__title::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-inline: auto;
+  margin-bottom: var(--espacio-5);
+}
+
+/*
+ * Número de la métrica: efecto de gradiente texto.
+ * Aplica el gradiente oro sobre el valor numérico.
+ */
+.metric-item__value {
+  background: var(--gradiente-texto-oro);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback sin soporte */
+}
+
+/*
+ * Fallback: si background-clip: text no está soportado,
+ * usa el color sólido del primario.
+ */
+@supports not (-webkit-background-clip: text) {
+  .metric-item__value {
+    color: var(--color-primario);
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/*
+ * El sufijo (+, h, etc.) sale del gradiente y usa el tono
+ * de oro base sin override de texto transparente.
+ */
+.metric-item__suffix {
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: var(--color-secundario);
+  color: var(--color-secundario);
+}
+
+/*
+ * Borde superior decorativo en la card de métrica:
+ * color oro como highlight de la sección.
+ */
+.metric-item {
+  border-top: var(--home-accent-line-width) solid var(--color-secundario-suave);
+}
+
+.metric-item:hover {
+  border-top-color: var(--color-secundario);
+}
+
+/* ==========================================================
+   7. DENTISTAS PREVIEW — AJUSTES HOME
+   ========================================================== */
+
+/*
+ * Línea decorativa del header.
+ */
+.dentistas-preview__header::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-inline: auto;
+  margin-bottom: var(--espacio-4);
+}
+
+.dentistas-preview__label {
+  display: block;
+  font-family: var(--fuente-secundaria);
+  font-size: var(--home-section-label-size);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--home-section-label-color);
+  margin-bottom: var(--espacio-3);
+}
+
+/*
+ * Especialidad de la card resaltada con fondo pill.
+ * Refuerza rápidamente la diferenciación entre dentistas.
+ */
+.dentista-card__subtitle {
+  display: inline-block;
+  padding: var(--espacio-0-5) var(--espacio-3);
+  background-color: var(--color-secundario-claro);
+  border-radius: var(--radio-pill);
+}
+
+/*
+ * Overlay de degradado inferior en la imagen del dentista.
+ * Crea transición suave de la foto hacia el body de la card.
+ */
+.dentista-card__media::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: var(--gradiente-scrim-inferior);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ==========================================================
+   8. MAPA / UBICACIÓN — AJUSTES HOME
+   ========================================================== */
+
+/*
+ * Línea decorativa antes del título.
+ */
+.mapa-ubicacion__title::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: var(--home-accent-line-width);
+  background-color: var(--home-accent-line-color);
+  border-radius: var(--radio-pill);
+  margin-bottom: var(--espacio-5);
+}
+
+.mapa-ubicacion__label {
+  display: block;
+  font-family: var(--fuente-secundaria);
+  font-size: var(--home-section-label-size);
+  font-weight: var(--peso-semibold);
+  letter-spacing: var(--tracking-mayusculas);
+  text-transform: uppercase;
+  color: var(--home-section-label-color);
+  margin-bottom: var(--espacio-3);
+}
+
+/*
+ * El mapa tiene un borde decorativo de color oro
+ * en la parte superior del wrapper (no del iframe).
+ */
+.mapa-ubicacion__embed-wrapper {
+  border-top: var(--home-accent-line-width) solid var(--color-secundario);
+}
+
+/*
+ * Separador visual entre los bloques de información
+ * dentro de mapa-ubicacion__info.
+ */
+.mapa-ubicacion__info > * + * {
+  padding-top: var(--espacio-6);
+  border-top: var(--borde);
+}
+
+/* Excepción: el título no tiene separador arriba */
+.mapa-ubicacion__title {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ==========================================================
+   9. RITMO DE FONDOS
+   Alternancia de color entre secciones del Home.
+   Garantiza separación visual clara sin bordes explícitos.
+   ========================================================== */
+
+.servicios-destacados {
+  background-color: var(--home-seccion-1-bg);
+}
+.experiencia-premium {
+  background-color: var(--home-seccion-2-bg);
+}
+.nosotros {
+  background-color: var(--home-seccion-3-bg);
+}
+.dentistas-preview {
+  background-color: var(--home-seccion-4-bg);
+}
+.mapa-ubicacion {
+  background-color: var(--home-seccion-5-bg);
+}
+
+/* ==========================================================
+   10. ANIMACIONES DE ENTRADA (SCROLL-DRIVEN)
+   Clase base: .animar-entrada
+   Estado inicial (oculto): .animar-entrada--oculto
+   Estado final (visible): clase removida por main.js
+   vía IntersectionObserver.
+
+   Variantes de animación:
+     .animar-entrada--desde-abajo  (default)
+     .animar-entrada--desde-izq
+     .animar-entrada--desde-der
+     .animar-entrada--escalar
+     .animar-entrada--fade
+
+   Delay escalonado para grids (stagger):
+     data-delay="0" → 0ms
+     data-delay="1" → 80ms
+     data-delay="2" → 160ms
+     data-delay="3" → 240ms
+   ========================================================== */
+
+/*
+ * Estado base de todos los elementos animables.
+ * El JS añade .animar-entrada--oculto al inicializar,
+ * y lo remueve cuando el elemento entra al viewport.
+ */
+.animar-entrada {
+  transition-property: opacity, transform;
+  transition-duration: var(--home-entrada-duracion);
+  transition-timing-function: var(--ease-suave);
+}
+
+/* ── Estado oculto (antes de entrar al viewport) ── */
+.animar-entrada--oculto.animar-entrada--desde-abajo {
+  opacity: 0;
+  transform: translateY(var(--home-entrada-translate-y));
+}
+
+.animar-entrada--oculto.animar-entrada--desde-izq {
+  opacity: 0;
+  transform: translateX(calc(var(--home-entrada-translate-y) * -1));
+}
+
+.animar-entrada--oculto.animar-entrada--desde-der {
+  opacity: 0;
+  transform: translateX(var(--home-entrada-translate-y));
+}
+
+.animar-entrada--oculto.animar-entrada--escalar {
+  opacity: 0;
+  transform: scale(var(--home-entrada-scale));
+}
+
+.animar-entrada--oculto.animar-entrada--fade {
+  opacity: 0;
+}
+
+/* ── Estado visible (clase removida por JS) ── */
+.animar-entrada:not(.animar-entrada--oculto) {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Delays escalonados para grids (stagger) ── */
+/*
+ * El JS asigna data-delay="N" a cada hijo del grid.
+ * CSS los convierte en transition-delay escalonado.
+ */
+[data-delay="0"] {
+  transition-delay: 0ms;
+}
+[data-delay="1"] {
+  transition-delay: calc(var(--home-entrada-delay-step) * 1);
+}
+[data-delay="2"] {
+  transition-delay: calc(var(--home-entrada-delay-step) * 2);
+}
+[data-delay="3"] {
+  transition-delay: calc(var(--home-entrada-delay-step) * 3);
+}
+[data-delay="4"] {
+  transition-delay: calc(var(--home-entrada-delay-step) * 4);
+}
+[data-delay="5"] {
+  transition-delay: calc(var(--home-entrada-delay-step) * 5);
+}
+
+/*
+ * Reset del delay cuando el elemento ya es visible:
+ * evita que el delay se aplique en la transición de salida.
+ */
+.animar-entrada:not(.animar-entrada--oculto) {
+  transition-delay: 0ms;
+}
+
+/*
+ * Respeto a prefers-reduced-motion:
+ * desactiva todas las animaciones de entrada.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .animar-entrada--oculto {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-delay] {
+    transition-delay: 0ms !important;
+  }
+}
