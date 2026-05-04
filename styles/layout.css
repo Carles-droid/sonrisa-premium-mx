@@ -336,6 +336,17 @@
   max-height: var(--navbar-logo-max-h);
 }
 
+.navbar__logo-icon {
+  height: 40px;
+  width: auto;
+  display: block;
+  transition: opacity var(--duracion-lenta);
+}
+
+.navbar__logo:hover .navbar__logo-icon {
+  opacity: 0.75;
+}
+
 /* ── Menú ── */
 .navbar__menu {
   display: none; /* oculto en mobile */
@@ -505,6 +516,24 @@
    * tiene que absorber (margin-top negativo).
    */
   padding-top: var(--navbar-height-mobile);
+}
+
+/* Imagen de fondo del slide */
+.hero__slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  /* Zoom sutil en el slide activo */
+  transform: scale(1.05);
+  transition: transform 6000ms ease;
+}
+
+.hero__slide--active .hero__slide-img {
+  transform: scale(1);
 }
 
 @media (min-width: 1024px) {
