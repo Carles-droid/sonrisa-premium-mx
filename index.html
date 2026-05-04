@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Primary -->
+    <title>Sonrisa Premium MX | Clínica Dental en Polanco, CDMX</title>
+    <meta
+      name="description"
+      content="Clínica dental de especialidades en Polanco, CDMX. Ortodoncia, implantes, blanqueamiento y más con tecnología de vanguardia. Agenda tu cita hoy."
+    />
+    <meta
+      name="keywords"
+      content="clínica dental CDMX, dentista Polanco, ortodoncia Ciudad de México, implantes dentales, blanqueamiento dental"
+    />
+    <meta name="author" content="Sonrisa Premium MX" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sonrisapremium.mx/" />
+    <meta
+      property="og:title"
+      content="Sonrisa Premium MX | Clínica Dental en Polanco, CDMX"
+    />
+    <meta
+      property="og:description"
+      content="Especialistas certificados, tecnología avanzada y atención personalizada. Agenda tu cita en Polanco, CDMX."
+    />
+    <meta property="og:image" content="assets/img/og-image.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/fav-icons/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="assets/fav-icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/fav-icons/apple-touch-icon.png" />
+
+    <!-- Google Fonts — Optimizado: solo pesos necesarios -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheets — orden de cascada intencional -->
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <link rel="stylesheet" href="styles/pages/home.css" />
+  </head>
+
+  <body>
+    <!-- ============================================================
+       NAVBAR
+       Sticky · Logo · Menu con dropdown · Lang Toggle · CTA
+       ============================================================ -->
+    <header class="navbar" id="navbar" data-js="navbar" role="banner">
+      <div class="navbar__container">
+        <!-- Logo -->
+        <a
+          href="index.html"
+          class="navbar__logo"
+          aria-label="Sonrisa Premium MX — Ir al inicio"
+        >
+          <!-- TODO: reemplazar con SVG/img del logo real -->
+          <span class="navbar__logo-text" aria-hidden="false"
+            >Sonrisa Premium MX</span
+          >
+        </a>
+
+        <!-- Menú principal — oculto en mobile hasta toggle -->
+        <nav
+          class="navbar__menu"
+          id="navbarMenu"
+          role="navigation"
+          aria-label="Menú principal"
+        >
+          <ul class="navbar__list" role="list">
+            <li class="navbar__item">
+              <a
+                href="index.html"
+                class="navbar__link navbar__link--active"
+                aria-current="page"
+              >
+                Inicio
+              </a>
+            </li>
+
+            <!-- Tratamientos: usa <button> para controlar dropdown (no <a>) -->
+            <li class="navbar__item navbar__item--has-dropdown">
+              <button
+                class="navbar__link navbar__dropdown-trigger"
+                aria-expanded="false"
+                aria-controls="submenuTratamientos"
+                aria-haspopup="true"
+                data-js="dropdown-trigger"
+              >
+                Tratamientos
+                <svg
+                  class="navbar__dropdown-chevron"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 6L8 10L12 6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <ul
+                class="navbar__submenu"
+                id="submenuTratamientos"
+                role="list"
+                aria-label="Submenú de tratamientos"
+              >
+                <li class="navbar__submenu-item">
+                  <a
+                    href="pages/servicios/limpieza-dental.html"
+                    class="navbar__submenu-link"
+                  >
+                    Limpieza Dental
+                  </a>
+                </li>
+                <li class="navbar__submenu-item">
+                  <a
+                    href="pages/servicios/blanqueamiento.html"
+                    class="navbar__submenu-link"
+                  >
+                    Blanqueamiento Dental
+                  </a>
+                </li>
+                <li class="navbar__submenu-item">
+                  <a
+                    href="pages/servicios/ortodoncia.html"
+                    class="navbar__submenu-link"
+                  >
+                    Ortodoncia
+                  </a>
+                </li>
+                <li class="navbar__submenu-item">
+                  <a
+                    href="pages/servicios/implantes.html"
+                    class="navbar__submenu-link"
+                  >
+                    Implantes Dentales
+                  </a>
+                </li>
+                <li class="navbar__submenu-item">
+                  <a
+                    href="pages/servicios/estetica-dental.html"
+                    class="navbar__submenu-link"
+                  >
+                    Estética Dental
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="navbar__item">
+              <a href="pages/nosotros.html" class="navbar__link">Nosotros</a>
+            </li>
+
+            <li class="navbar__item">
+              <a href="pages/dentistas.html" class="navbar__link">Dentistas</a>
+            </li>
+
+            <li class="navbar__item">
+              <a href="pages/blog.html" class="navbar__link">Blog</a>
+            </li>
+
+            <li class="navbar__item">
+              <a href="pages/contacto.html" class="navbar__link">Contáctanos</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Acciones: lang toggle + CTA -->
+        <div class="navbar__actions">
+          <div
+            class="navbar__lang"
+            role="group"
+            aria-label="Seleccionar idioma"
+          >
+            <button
+              class="navbar__lang-btn navbar__lang-btn--active"
+              aria-pressed="true"
+              lang="es"
+              data-js="lang-btn"
+              data-lang="es"
+            >
+              ES
+            </button>
+            <span class="navbar__lang-separator" aria-hidden="true">/</span>
+            <button
+              class="navbar__lang-btn"
+              aria-pressed="false"
+              lang="en"
+              data-js="lang-btn"
+              data-lang="en"
+            >
+              EN
+            </button>
+          </div>
+
+          <a
+            href="pages/contacto.html"
+            class="btn btn--primary navbar__cta"
+            aria-label="Agendar cita en Sonrisa Premium MX"
+          >
+            Agendar cita
+          </a>
+        </div>
+
+        <!-- Hamburger — visible solo en mobile -->
+        <button
+          class="navbar__toggle"
+          id="navbarToggle"
+          aria-expanded="false"
+          aria-controls="navbarMenu"
+          aria-label="Abrir menú de navegación"
+          data-js="navbar-toggle"
+        >
+          <span class="navbar__toggle-bar" aria-hidden="true"></span>
+          <span class="navbar__toggle-bar" aria-hidden="true"></span>
+          <span class="navbar__toggle-bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <!-- /NAVBAR -->
+
+    <main id="main-content">
+      <!-- ============================================================
+         HERO — IMAGE SLIDER
+         Layer 1: SliderTrack (backgrounds dinámicos)
+         Layer 2: Overlay (contraste)
+         Layer 3: HeroContent (texto + CTAs)
+         Layer 4: Controls (prev/next + indicators)
+         ============================================================ -->
+      <section
+        class="hero"
+        id="hero"
+        aria-label="Presentación principal de Sonrisa Premium MX"
+      >
+        <!-- Slider -->
+        <div
+          class="hero__slider"
+          id="heroSlider"
+          data-js="hero-slider"
+          aria-live="polite"
+          aria-atomic="false"
+        >
+          <!-- Track — se desplaza con transform en JS -->
+          <div
+            class="hero__slide-track"
+            id="heroSlideTrack"
+            data-js="slide-track"
+          >
+            <!-- Slide 1 -->
+            <div
+              class="hero__slide hero__slide--active"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="1 de 4: Sonrisas saludables"
+              data-slide-index="0"
+              style="
+                background-image: url(&quot;https://picsum.photos/seed/sp-hero-1/1920/1080&quot;);
+              "
+            >
+              <div class="hero__slide-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="hero__slide"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="2 de 4: Tecnología de vanguardia"
+              data-slide-index="1"
+              style="
+                background-image: url(&quot;https://picsum.photos/seed/sp-hero-2/1920/1080&quot;);
+              "
+            >
+              <div class="hero__slide-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="hero__slide"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="3 de 4: Equipo especializado"
+              data-slide-index="2"
+              style="
+                background-image: url(&quot;https://picsum.photos/seed/sp-hero-3/1920/1080&quot;);
+              "
+            >
+              <div class="hero__slide-overlay" aria-hidden="true"></div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div
+              class="hero__slide"
+              role="group"
+              aria-roledescription="slide"
+              aria-label="4 de 4: Instalaciones premium"
+              data-slide-index="3"
+              style="
+                background-image: url(&quot;https://picsum.photos/seed/sp-hero-4/1920/1080&quot;);
+              "
+            >
+              <div class="hero__slide-overlay" aria-hidden="true"></div>
+            </div>
+          </div>
+          <!-- /hero__slide-track -->
+
+          <!-- Controles de navegación -->
+          <div class="hero__controls" aria-label="Controles del carrusel">
+            <button
+              class="hero__btn hero__btn--prev"
+              id="heroPrev"
+              aria-label="Slide anterior"
+              data-js="slider-prev"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M15 18L9 12L15 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              class="hero__btn hero__btn--next"
+              id="heroNext"
+              aria-label="Siguiente slide"
+              data-js="slider-next"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9 18L15 12L9 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Indicators / Dots -->
+          <div
+            class="hero__indicators"
+            id="heroIndicators"
+            role="tablist"
+            aria-label="Indicadores de slide"
+          >
+            <button
+              class="hero__indicator hero__indicator--active"
+              role="tab"
+              aria-selected="true"
+              aria-label="Ir al slide 1"
+              data-js="slider-indicator"
+              data-target-slide="0"
+            ></button>
+            <button
+              class="hero__indicator"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ir al slide 2"
+              data-js="slider-indicator"
+              data-target-slide="1"
+            ></button>
+            <button
+              class="hero__indicator"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ir al slide 3"
+              data-js="slider-indicator"
+              data-target-slide="2"
+            ></button>
+            <button
+              class="hero__indicator"
+              role="tab"
+              aria-selected="false"
+              aria-label="Ir al slide 4"
+              data-js="slider-indicator"
+              data-target-slide="3"
+            ></button>
+          </div>
+        </div>
+        <!-- /hero__slider -->
+
+        <!-- Contenido en overlay (global — no cambia por slide) -->
+        <div class="hero__content">
+          <div class="hero__content-container">
+            <h1 class="hero__headline">
+              Sonrisas saludables con<br />
+              <em class="hero__headline-em">tecnología de vanguardia</em>
+            </h1>
+
+            <p class="hero__subheadline">
+              Especialistas certificados en Polanco, CDMX.<br />
+              Resultados visibles desde tu primera consulta.
+            </p>
+
+            <div
+              class="hero__cta-group"
+              role="group"
+              aria-label="Acciones principales"
+            >
+              <a
+                href="pages/contacto.html"
+                class="btn btn--primary hero__cta-primary"
+              >
+                Agendar cita
+              </a>
+              <a
+                href="pages/servicios.html"
+                class="btn btn--ghost hero__cta-secondary"
+              >
+                Ver tratamientos
+              </a>
+            </div>
+
+            <ul
+              class="hero__meta"
+              role="list"
+              aria-label="Información de contacto rápida"
+            >
+              <li class="hero__meta-item">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.49-2.01-4.5-4.5-4.5z"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                  />
+                  <circle
+                    cx="8"
+                    cy="6"
+                    r="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                  />
+                </svg>
+                Polanco, CDMX
+              </li>
+
+              <li class="hero__meta-item">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6.5"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M8 5v3.5L10.5 10"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Lun – Sáb, 8:00 – 20:00
+              </li>
+
+              <li class="hero__meta-item">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 1.5v13M1.5 8h13"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6.5"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                  />
+                </svg>
+                Urgencias 24 h
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- /hero__content -->
+      </section>
+      <!-- /HERO -->
+
+      <!-- ============================================================
+         SHAPE DIVIDER #1 — Diagonal elegante
+         aria-hidden porque es puramente decorativo
+         ============================================================ -->
+      <div class="shape-divider shape-divider--primary" aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 80"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <path
+            d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
+            fill="var(--color-surface)"
+          />
+        </svg>
+      </div>
+      <!-- /SHAPE DIVIDER #1 -->
+
+      <!-- ============================================================
+         SERVICIOS DESTACADOS
+         Grid 4 cards · responsive 3-2-1 col
+         ============================================================ -->
+      <section
+        class="servicios-destacados"
+        id="servicios"
+        aria-labelledby="servicios-destacados-title"
+      >
+        <div class="servicios-destacados__container">
+          <!-- Header de sección -->
+          <header class="servicios-destacados__header">
+            <h2
+              class="servicios-destacados__title"
+              id="servicios-destacados-title"
+            >
+              Nuestros tratamientos
+            </h2>
+            <p class="servicios-destacados__subtitle">
+              Soluciones integrales para tu salud bucal con la más alta
+              tecnología odontológica
+            </p>
+          </header>
+
+          <!-- Grid -->
+          <div class="servicios-destacados__grid" role="list">
+            <!-- Card: Limpieza Dental -->
+            <article class="servicio-card" role="listitem">
+              <div class="servicio-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-limpieza/600/600"
+                  alt="Tratamiento de limpieza dental profesional con ultrasonido"
+                  class="servicio-card__img"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="servicio-card__body">
+                <h3 class="servicio-card__title">Limpieza Dental</h3>
+                <p class="servicio-card__description">
+                  Eliminamos sarro, manchas y bacterias con ultrasonido de
+                  última generación. Previene caries y enfermedad periodontal
+                  desde la raíz.
+                </p>
+                <p class="servicio-card__meta">45 min aprox.</p>
+              </div>
+              <div class="servicio-card__footer">
+                <a
+                  href="pages/servicios/limpieza-dental.html"
+                  class="btn btn--outline servicio-card__cta"
+                >
+                  Ver tratamiento
+                </a>
+              </div>
+            </article>
+
+            <!-- Card: Blanqueamiento -->
+            <article class="servicio-card" role="listitem">
+              <div class="servicio-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-blanqueamiento/600/600"
+                  alt="Blanqueamiento dental profesional con tecnología LED hasta 8 tonos"
+                  class="servicio-card__img"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="servicio-card__body">
+                <h3 class="servicio-card__title">Blanqueamiento Dental</h3>
+                <p class="servicio-card__description">
+                  Hasta 8 tonos más blanco en una sola sesión con tecnología LED
+                  y fórmula de activación avanzada sin dañar el esmalte.
+                </p>
+                <p class="servicio-card__meta">60 min aprox.</p>
+              </div>
+              <div class="servicio-card__footer">
+                <a
+                  href="pages/servicios/blanqueamiento.html"
+                  class="btn btn--outline servicio-card__cta"
+                >
+                  Ver tratamiento
+                </a>
+              </div>
+            </article>
+
+            <!-- Card: Ortodoncia -->
+            <article class="servicio-card" role="listitem">
+              <div class="servicio-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-ortodoncia/600/600"
+                  alt="Ortodoncia con brackets y alineadores invisibles en CDMX"
+                  class="servicio-card__img"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="servicio-card__body">
+                <h3 class="servicio-card__title">Ortodoncia</h3>
+                <p class="servicio-card__description">
+                  Brackets metálicos, estéticos o alineadores invisibles
+                  adaptados a tu estilo de vida. Corrección oclusal con
+                  seguimiento personalizado.
+                </p>
+                <p class="servicio-card__meta">Planes desde 12 meses</p>
+              </div>
+              <div class="servicio-card__footer">
+                <a
+                  href="pages/servicios/ortodoncia.html"
+                  class="btn btn--outline servicio-card__cta"
+                >
+                  Ver tratamiento
+                </a>
+              </div>
+            </article>
+
+            <!-- Card: Implantes -->
+            <article class="servicio-card" role="listitem">
+              <div class="servicio-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-implantes/600/600"
+                  alt="Implantes dentales de titanio de alta resistencia en Polanco"
+                  class="servicio-card__img"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="servicio-card__body">
+                <h3 class="servicio-card__title">Implantes Dentales</h3>
+                <p class="servicio-card__description">
+                  Reemplaza piezas perdidas con implantes de titanio de alta
+                  resistencia. Resultado natural, función completa y durabilidad
+                  permanente.
+                </p>
+                <p class="servicio-card__meta">Procedimiento en 2 fases</p>
+              </div>
+              <div class="servicio-card__footer">
+                <a
+                  href="pages/servicios/implantes.html"
+                  class="btn btn--outline servicio-card__cta"
+                >
+                  Ver tratamiento
+                </a>
+              </div>
+            </article>
+          </div>
+          <!-- /servicios-destacados__grid -->
+
+          <!-- CTA de sección -->
+          <div class="servicios-destacados__section-cta">
+            <a href="pages/servicios.html" class="btn btn--primary">
+              Ver todos los tratamientos
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- /SERVICIOS DESTACADOS -->
+
+      <!-- ============================================================
+         EXPERIENCIA PREMIUM
+         Split layout: Imagen izquierda · Contenido + beneficios derecha
+         ============================================================ -->
+      <section
+        class="experiencia-premium"
+        id="experiencia"
+        aria-labelledby="experiencia-premium-title"
+      >
+        <div class="experiencia-premium__container">
+          <!-- Media Block -->
+          <div class="experiencia-premium__media">
+            <img
+              src="https://picsum.photos/seed/sp-clinica/800/600"
+              alt="Instalaciones modernas de Sonrisa Premium MX en Polanco, CDMX"
+              class="experiencia-premium__img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Content Block -->
+          <div class="experiencia-premium__content">
+            <h2
+              class="experiencia-premium__title"
+              id="experiencia-premium-title"
+            >
+              Una experiencia dental diferente
+            </h2>
+
+            <p class="experiencia-premium__description">
+              Combinamos tecnología de vanguardia con un enfoque humano y
+              completamente personalizado. Cada tratamiento es diseñado a la
+              medida de tu salud, tu historial y tu sonrisa.
+            </p>
+
+            <!-- Beneficios -->
+            <ul
+              class="experiencia-premium__beneficios"
+              role="list"
+              aria-label="Beneficios diferenciales de Sonrisa Premium MX"
+            >
+              <li class="beneficio-item">
+                <div class="beneficio-item__icon" aria-hidden="true">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="14"
+                      cy="14"
+                      r="13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M8 14l4 4 8-8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="beneficio-item__content">
+                  <h3 class="beneficio-item__title">Tecnología avanzada</h3>
+                  <p class="beneficio-item__description">
+                    Diagnóstico digital 3D y equipos de última generación para
+                    tratamientos mínimamente invasivos.
+                  </p>
+                </div>
+              </li>
+
+              <li class="beneficio-item">
+                <div class="beneficio-item__icon" aria-hidden="true">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="14"
+                      cy="14"
+                      r="13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M14 8v6l4 2"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="beneficio-item__content">
+                  <h3 class="beneficio-item__title">Resultados rápidos</h3>
+                  <p class="beneficio-item__description">
+                    Protocolos eficientes que minimizan el tiempo en el sillón
+                    sin comprometer la calidad ni la seguridad del resultado.
+                  </p>
+                </div>
+              </li>
+
+              <li class="beneficio-item">
+                <div class="beneficio-item__icon" aria-hidden="true">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="14"
+                      cy="14"
+                      r="13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M14 9a3 3 0 100 6 3 3 0 000-6zM8.5 21c0-3.04 2.46-5.5 5.5-5.5s5.5 2.46 5.5 5.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+                <div class="beneficio-item__content">
+                  <h3 class="beneficio-item__title">Atención personalizada</h3>
+                  <p class="beneficio-item__description">
+                    Plan de tratamiento individual con seguimiento continuo y
+                    comunicación directa con tu especialista desde el primer
+                    día.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- /experiencia-premium__content -->
+        </div>
+      </section>
+      <!-- /EXPERIENCIA PREMIUM -->
+
+      <!-- ============================================================
+         NOSOTROS — MÉTRICAS DE CREDIBILIDAD
+         Stack: Header · Grid 4 métricas
+         ============================================================ -->
+      <section class="nosotros" id="nosotros" aria-labelledby="nosotros-title">
+        <div class="nosotros__container">
+          <!-- Header -->
+          <header class="nosotros__header">
+            <h2 class="nosotros__title" id="nosotros-title">
+              Respaldados por resultados
+            </h2>
+            <p class="nosotros__description">
+              Más de una década construyendo sonrisas saludables en Ciudad de
+              México. Nuestros números reflejan el compromiso de cada integrante
+              del equipo Sonrisa Premium MX.
+            </p>
+          </header>
+
+          <!-- Metrics Grid -->
+          <div
+            class="nosotros__metrics"
+            role="list"
+            aria-label="Cifras clave de la clínica"
+          >
+            <div class="metric-item" role="listitem">
+              <strong class="metric-item__value" aria-label="Más de 10 años">
+                10<span class="metric-item__suffix" aria-hidden="true">+</span>
+              </strong>
+              <p class="metric-item__label">Años de experiencia</p>
+            </div>
+
+            <div class="metric-item" role="listitem">
+              <strong
+                class="metric-item__value"
+                aria-label="Más de 500 pacientes"
+              >
+                500<span class="metric-item__suffix" aria-hidden="true">+</span>
+              </strong>
+              <p class="metric-item__label">Pacientes atendidos</p>
+            </div>
+
+            <div class="metric-item" role="listitem">
+              <strong class="metric-item__value">5</strong>
+              <p class="metric-item__label">Especialistas certificados</p>
+            </div>
+
+            <div class="metric-item" role="listitem">
+              <strong class="metric-item__value" aria-label="Atención 24 horas">
+                24<span class="metric-item__suffix" aria-hidden="true">h</span>
+              </strong>
+              <p class="metric-item__label">Atención de urgencias</p>
+            </div>
+          </div>
+          <!-- /nosotros__metrics -->
+        </div>
+      </section>
+      <!-- /NOSOTROS -->
+
+      <!-- ============================================================
+         DENTISTAS PREVIEW
+         Grid 4 cards · responsive 3-2-1 col
+         ============================================================ -->
+      <section
+        class="dentistas-preview"
+        id="dentistas"
+        aria-labelledby="dentistas-preview-title"
+      >
+        <div class="dentistas-preview__container">
+          <!-- Header -->
+          <header class="dentistas-preview__header">
+            <h2 class="dentistas-preview__title" id="dentistas-preview-title">
+              Conoce a tu equipo
+            </h2>
+            <p class="dentistas-preview__subtitle">
+              Especialistas certificados y comprometidos con tu bienestar desde
+              el primer día
+            </p>
+          </header>
+
+          <!-- Grid -->
+          <div class="dentistas-preview__grid" role="list">
+            <!-- Dentista Card 1 -->
+            <article class="dentista-card" role="listitem">
+              <div class="dentista-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-dra-mendoza/400/533"
+                  alt="Dra. Laura Mendoza, especialista en Ortodoncia en Sonrisa Premium MX"
+                  class="dentista-card__img"
+                  width="400"
+                  height="533"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="dentista-card__body">
+                <h3 class="dentista-card__title">Dra. Laura Mendoza</h3>
+                <p class="dentista-card__subtitle">Ortodoncia</p>
+                <p class="dentista-card__meta">12+ años de experiencia</p>
+              </div>
+              <div class="dentista-card__footer">
+                <a
+                  href="pages/dentistas.html#dra-laura-mendoza"
+                  class="btn btn--outline dentista-card__cta"
+                >
+                  Ver perfil
+                </a>
+              </div>
+            </article>
+
+            <!-- Dentista Card 2 -->
+            <article class="dentista-card" role="listitem">
+              <div class="dentista-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-dr-vega/400/533"
+                  alt="Dr. Rodrigo Vega, especialista en Implantología en Sonrisa Premium MX"
+                  class="dentista-card__img"
+                  width="400"
+                  height="533"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="dentista-card__body">
+                <h3 class="dentista-card__title">Dr. Rodrigo Vega</h3>
+                <p class="dentista-card__subtitle">Implantología</p>
+                <p class="dentista-card__meta">Certificado AMIO</p>
+              </div>
+              <div class="dentista-card__footer">
+                <a
+                  href="pages/dentistas.html#dr-rodrigo-vega"
+                  class="btn btn--outline dentista-card__cta"
+                >
+                  Ver perfil
+                </a>
+              </div>
+            </article>
+
+            <!-- Dentista Card 3 -->
+            <article class="dentista-card" role="listitem">
+              <div class="dentista-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-dra-reyes/400/533"
+                  alt="Dra. Sofía Reyes, especialista en Estética Dental en Sonrisa Premium MX"
+                  class="dentista-card__img"
+                  width="400"
+                  height="533"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="dentista-card__body">
+                <h3 class="dentista-card__title">Dra. Sofía Reyes</h3>
+                <p class="dentista-card__subtitle">Estética Dental</p>
+                <p class="dentista-card__meta">8+ años de experiencia</p>
+              </div>
+              <div class="dentista-card__footer">
+                <a
+                  href="pages/dentistas.html#dra-sofia-reyes"
+                  class="btn btn--outline dentista-card__cta"
+                >
+                  Ver perfil
+                </a>
+              </div>
+            </article>
+
+            <!-- Dentista Card 4 -->
+            <article class="dentista-card" role="listitem">
+              <div class="dentista-card__media">
+                <img
+                  src="https://picsum.photos/seed/sp-dr-fuentes/400/533"
+                  alt="Dr. Carlos Fuentes, especialista en Endodoncia en Sonrisa Premium MX"
+                  class="dentista-card__img"
+                  width="400"
+                  height="533"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="dentista-card__body">
+                <h3 class="dentista-card__title">Dr. Carlos Fuentes</h3>
+                <p class="dentista-card__subtitle">Endodoncia</p>
+                <p class="dentista-card__meta">10+ años de experiencia</p>
+              </div>
+              <div class="dentista-card__footer">
+                <a
+                  href="pages/dentistas.html#dr-carlos-fuentes"
+                  class="btn btn--outline dentista-card__cta"
+                >
+                  Ver perfil
+                </a>
+              </div>
+            </article>
+          </div>
+          <!-- /dentistas-preview__grid -->
+
+          <!-- CTA de sección -->
+          <div class="dentistas-preview__section-cta">
+            <a href="pages/dentistas.html" class="btn btn--primary">
+              Ver equipo completo
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- /DENTISTAS PREVIEW -->
+
+      <!-- ============================================================
+         SHAPE DIVIDER #2 — Curva invertida / layered wave
+         ============================================================ -->
+      <div class="shape-divider shape-divider--secondary" aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 80"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <path
+            d="M0,40 C480,0 960,80 1440,40 L1440,0 L0,0 Z"
+            fill="var(--color-surface-alt)"
+          />
+        </svg>
+      </div>
+      <!-- /SHAPE DIVIDER #2 -->
+
+      <!-- ============================================================
+         MAPA / UBICACIÓN
+         Split layout: Mapa embed izquierda · Info derecha
+         ============================================================ -->
+      <section
+        class="mapa-ubicacion"
+        id="ubicacion"
+        aria-labelledby="mapa-ubicacion-title"
+      >
+        <div class="mapa-ubicacion__container">
+          <!-- Map Block -->
+          <div class="mapa-ubicacion__map">
+            <div class="mapa-ubicacion__embed-wrapper">
+              <!--
+              TODO: reemplazar la src con embed real de Google Maps
+              Instrucciones: maps.google.com → Compartir → Insertar mapa → copiar src
+            -->
+              <iframe
+                class="mapa-ubicacion__embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6604870786756!2d-99.17989228467657!3d19.432514145994604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff39c80b75df%3A0x5e8f87ac80571c78!2sPolanco%2C%20Miguel%20Hidalgo%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1680000000000!5m2!1ses!2smx"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación de Sonrisa Premium MX en Polanco, CDMX"
+                aria-label="Mapa interactivo con la ubicación de Sonrisa Premium MX"
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Info Block -->
+          <div class="mapa-ubicacion__info">
+            <h2 class="mapa-ubicacion__title" id="mapa-ubicacion-title">
+              Encuéntranos
+            </h2>
+
+            <!-- Dirección -->
+            <address class="mapa-ubicacion__address">
+              Av. Presidente Masaryk 111, Piso 3<br />
+              Col. Polanco V Sección<br />
+              Miguel Hidalgo, CDMX, 11560
+            </address>
+
+            <!-- Horario -->
+            <div
+              class="mapa-ubicacion__schedule"
+              aria-label="Horario de atención"
+            >
+              <h3 class="mapa-ubicacion__schedule-title">
+                Horario de atención
+              </h3>
+              <ul class="mapa-ubicacion__schedule-list" role="list">
+                <li>Lunes – Viernes: 8:00 – 20:00 h</li>
+                <li>Sábado: 9:00 – 15:00 h</li>
+                <li>Urgencias: disponibles 24 h</li>
+              </ul>
+            </div>
+
+            <!-- Contacto rápido (máx. 2 items) -->
+            <div class="contact-quick" aria-label="Contacto rápido">
+              <a href="tel:+525512345678" class="contact-quick__item">
+                <span class="contact-quick__icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.5 3.5C6.5 3.5 7 6 5 8C3 10 3.5 10.5 3.5 10.5L9.5 16.5C9.5 16.5 10 17 12 15C14 13 16.5 13.5 16.5 13.5V15C16.5 16.1 15.6 17 14.5 17C7.5 17 3 12.5 3 5.5C3 4.4 3.9 3.5 5 3.5H6.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="contact-quick__text">+52 55 1234 5678</span>
+              </a>
+
+              <a
+                href="https://wa.me/525512345678"
+                class="contact-quick__item"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contactar por WhatsApp (abre en nueva ventana)"
+              >
+                <span class="contact-quick__icon" aria-hidden="true">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10 2C5.58 2 2 5.58 2 10c0 1.58.46 3.06 1.26 4.3L2 18l3.82-1.22C7.03 17.56 8.49 18 10 18c4.42 0 8-3.58 8-8s-3.58-8-8-8z"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M7.5 8.5s-.5 2.5 1.5 4.5 4.5 1.5 4.5 1.5l.5-1.5-2-1-.5.5-1.5-1.5.5-.5L9 8.5 7.5 8.5z"
+                      stroke="currentColor"
+                      stroke-width="1.2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="contact-quick__text">WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Map CTA Group -->
+            <div
+              class="mapa-ubicacion__cta-group"
+              role="group"
+              aria-label="Acciones de ubicación"
+            >
+              <a
+                href="https://maps.google.com/?q=Av.+Presidente+Masaryk+111+Polanco+CDMX"
+                class="btn btn--outline"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir ubicación en Google Maps (nueva ventana)"
+              >
+                Cómo llegar
+              </a>
+              <a href="pages/contacto.html" class="btn btn--primary">
+                Agendar cita
+              </a>
+            </div>
+          </div>
+          <!-- /mapa-ubicacion__info -->
+        </div>
+      </section>
+      <!-- /MAPA / UBICACIÓN -->
+    </main>
+
+    <!-- ============================================================
+       FOOTER
+       Main (brand + nav + contact) · Pagos · Bottom legal · Developer
+       ============================================================ -->
+    <footer class="footer" id="footer" role="contentinfo">
+      <!-- Footer Main — 3 columnas en desktop -->
+      <div class="footer__main">
+        <div class="footer__main-container">
+          <!-- Brand -->
+          <div class="footer__brand">
+            <a
+              href="index.html"
+              class="footer__logo"
+              aria-label="Sonrisa Premium MX — Ir al inicio"
+            >
+              <!-- TODO: reemplazar con logo real -->
+              <span class="footer__logo-text">Sonrisa Premium MX</span>
+            </a>
+            <p class="footer__brand-description">
+              Clínica dental de especialidades en el corazón de Polanco, CDMX.
+              Tecnología avanzada, atención humana y resultados que transforman
+              sonrisas.
+            </p>
+          </div>
+
+          <!-- Nav grupos -->
+          <nav class="footer__nav" aria-label="Navegación del footer">
+            <div class="footer__nav-group">
+              <h3 class="footer__nav-title">Tratamientos</h3>
+              <ul class="footer__nav-list" role="list">
+                <li>
+                  <a
+                    href="pages/servicios/limpieza-dental.html"
+                    class="footer__nav-link"
+                    >Limpieza Dental</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="pages/servicios/blanqueamiento.html"
+                    class="footer__nav-link"
+                    >Blanqueamiento</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="pages/servicios/ortodoncia.html"
+                    class="footer__nav-link"
+                    >Ortodoncia</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="pages/servicios/implantes.html"
+                    class="footer__nav-link"
+                    >Implantes</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="pages/servicios/estetica-dental.html"
+                    class="footer__nav-link"
+                    >Estética Dental</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer__nav-group">
+              <h3 class="footer__nav-title">Clínica</h3>
+              <ul class="footer__nav-list" role="list">
+                <li>
+                  <a href="pages/nosotros.html" class="footer__nav-link"
+                    >Nosotros</a
+                  >
+                </li>
+                <li>
+                  <a href="pages/dentistas.html" class="footer__nav-link"
+                    >Nuestros Dentistas</a
+                  >
+                </li>
+                <li>
+                  <a href="pages/blog.html" class="footer__nav-link">Blog</a>
+                </li>
+                <li>
+                  <a href="pages/contacto.html" class="footer__nav-link"
+                    >Contáctanos</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer__nav-group">
+              <h3 class="footer__nav-title">Contacto</h3>
+              <address class="footer__contact">
+                <p class="footer__contact-address">
+                  Av. Presidente Masaryk 111, Piso 3<br />
+                  Polanco, Miguel Hidalgo<br />
+                  CDMX, 11560
+                </p>
+                <a href="tel:+525512345678" class="footer__contact-link">
+                  +52 55 1234 5678
+                </a>
+                <a
+                  href="mailto:hola@sonrisapremium.mx"
+                  class="footer__contact-link"
+                >
+                  hola@sonrisapremium.mx
+                </a>
+              </address>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <!-- /footer__main -->
+
+      <!-- Formas de Pago — ancho completo, siempre visible -->
+      <div class="footer__payments">
+        <div class="footer__payments-container">
+          <h3 class="footer__payments-title">Formas de pago</h3>
+          <div
+            class="footer__payments-icons"
+            aria-label="Métodos de pago aceptados: Visa, Mastercard, American Express, OXXO Pay, Transferencia bancaria, Meses sin intereses"
+          >
+            <!--
+            TODO: reemplazar spans por SVG/img reales de cada método de pago
+            Fuente sugerida: svgrepo.com → payment icons
+          -->
+            <span class="payment-icon" aria-label="Visa">VISA</span>
+            <span class="payment-icon" aria-label="Mastercard">MC</span>
+            <span class="payment-icon" aria-label="American Express">AMEX</span>
+            <span class="payment-icon" aria-label="OXXO Pay">OXXO</span>
+            <span class="payment-icon" aria-label="Transferencia bancaria"
+              >Transferencia</span
+            >
+            <span class="payment-icon" aria-label="Meses sin intereses"
+              >MSI</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom — legal -->
+      <div class="footer__bottom">
+        <div class="footer__bottom-container">
+          <p class="footer__copyright">
+            &copy; <span id="currentYear"></span> Sonrisa Premium MX. Todos los
+            derechos reservados.
+          </p>
+          <nav class="footer__legal" aria-label="Enlaces legales">
+            <a href="#" class="footer__legal-link">Aviso de privacidad</a>
+            <a href="#" class="footer__legal-link">Términos de uso</a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Developer Credit — línea final -->
+      <div class="footer__developer">
+        <p class="footer__developer-credit">
+          Desarrollado por
+          <a
+            href="https://insomne.mx"
+            class="footer__developer-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Insomne
+          </a>
+        </p>
+      </div>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- ============================================================
+       WHATSAPP FLOATING BUTTON — Fixed, siempre visible
+       ============================================================ -->
+    <a
+      href="https://wa.me/525512345678?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20Sonrisa%20Premium%20MX"
+      class="whatsapp-float"
+      id="whatsappFloat"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar a Sonrisa Premium MX por WhatsApp (abre en nueva ventana)"
+    >
+      <svg
+        class="whatsapp-float__icon"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M16 3C8.82 3 3 8.82 3 16c0 2.53.74 4.9 2.01 6.88L3 29l6.33-1.96C11.22 28.3 13.57 29 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3z"
+          fill="currentColor"
+        />
+        <path
+          d="M21.5 18.5c-.3-.15-1.8-.9-2.1-1s-.5-.15-.7.15-.8 1-.98 1.2-.36.23-.67.08c-1.8-.9-3-1.6-4.2-3.6-.32-.55.32-.51.9-1.7.1-.2.05-.37-.03-.52-.08-.15-.7-1.7-1-2.3-.26-.6-.53-.52-.7-.53H11.5c-.17 0-.45.06-.68.32-.23.26-.9.88-.9 2.14 0 1.26.92 2.48 1.05 2.65 1.3 1.99 2.8 3.08 5.35 4.1.75.32 1.33.52 1.79.66.75.24 1.43.2 1.97.12.6-.09 1.8-.73 2.06-1.44.25-.71.25-1.32.17-1.44-.07-.12-.27-.19-.57-.34z"
+          fill="white"
+        />
+      </svg>
+      <span class="whatsapp-float__tooltip" aria-hidden="true">
+        ¿Necesitas ayuda?
+      </span>
+    </a>
+    <!-- /WHATSAPP FLOATING BUTTON -->
+
+    <!-- ============================================================
+       SCRIPTS — ES Modules
+       main.js orquesta e inicializa todos los módulos
+       ============================================================ -->
+    <script type="module" src="scripts/main.js"></script>
+  </body>
+</html>

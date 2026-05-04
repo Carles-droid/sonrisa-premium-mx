@@ -1,0 +1,1559 @@
+/*
+ * ============================================================
+ * SONRISA PREMIUM MX — layout.css
+ * Sistema de layout: contenedor · grid · secciones · utilidades
+ *
+ * Depende de: tokens.css (debe cargarse antes)
+ * Metodología: Mobile-first · BEM para bloques estructurales
+ *
+ * Breakpoints (reference):
+ *   mobile  → < 768px   (base, sin @media)
+ *   tablet  → ≥ 768px   (@media (min-width: 768px))
+ *   desktop → ≥ 1024px  (@media (min-width: 1024px))
+ *   wide    → ≥ 1280px  (@media (min-width: 1280px))
+ *
+ * Orden de bloques:
+ *   1.  Contenedor principal
+ *   2.  Grid system
+ *   3.  Navbar — posicionamiento estructural
+ *   4.  Hero — posicionamiento estructural
+ *   5.  Secciones de contenido
+ *   6.  Shape dividers
+ *   7.  Footer — posicionamiento estructural
+ *   8.  Flotantes (WhatsApp)
+ *   9.  Utilidades de display
+ *  10.  Utilidades de posicionamiento
+ *  11.  Utilidades de espaciado
+ *  12.  Utilidades de flex / grid
+ *  13.  Scroll y overflow
+ *
+ * Autor: Insomne × Sonrisa Premium MX
+ * ============================================================
+ */
+
+/* ==========================================================
+   1. CONTENEDOR PRINCIPAL
+   Sistema de contenedor centrado con padding lateral
+   responsivo. Mobile-first: de más angosto a más ancho.
+   ========================================================== */
+
+.contenedor {
+  width: 100%;
+  max-width: var(--contenedor-max);
+  margin-inline: auto; /* shorthand de margin-left + margin-right */
+  padding-inline: var(--contenedor-padding-x);
+}
+
+@media (min-width: 768px) {
+  .contenedor {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .contenedor {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+/* ── Variantes de ancho de contenedor ── */
+.contenedor--angosto {
+  max-width: var(--contenedor-max-angosto);
+}
+
+.contenedor--medio {
+  max-width: var(--contenedor-max-medio);
+}
+
+/*
+ * Contenedor flush: sin padding horizontal.
+ * Útil para hero y secciones con fondo full-bleed.
+ */
+.contenedor--flush {
+  padding-inline: 0;
+}
+
+/* ==========================================================
+   2. GRID SYSTEM
+   Grid CSS nativo. Mobile-first: 1 columna → crece.
+   Nomenclatura: .grid · .grid--cols-N · .grid--gap-*
+   ========================================================== */
+
+/* ── Base del grid ── */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+/* ── Columnas predefinidas ── */
+
+/*
+ * Grid auto-fit: se adapta al espacio disponible.
+ * Útil para grids de cards donde el número de columnas
+ * depende del viewport, no de un número fijo.
+ */
+.grid--auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+.grid--auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+}
+
+/* 2 columnas: tablet+ */
+.grid--cols-2 {
+  grid-template-columns: 1fr; /* mobile: 1 col */
+}
+
+@media (min-width: 768px) {
+  .grid--cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 columnas: 1 → 2 → 3 */
+.grid--cols-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid--cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 4 columnas: 1 → 2 → 4 */
+.grid--cols-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid--cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Grid específico para ServiciosDestacados y DentistasPreview:
+   3 cols en desktop, 2 en tablet, 1 en mobile. */
+.grid--servicios,
+.grid--dentistas {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid--servicios,
+  .grid--dentistas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--servicios,
+  .grid--dentistas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Grid de métricas (Nosotros): 2 → 2 → 4 */
+.grid--metricas {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1024px) {
+  .grid--metricas {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Split layout (50/50): imagen + contenido ── */
+.grid--split {
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .grid--split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/*
+ * Variante split asimétrico: media más ancha que el contenido.
+ * Proporciones: 55% imagen / 45% texto.
+ * Usado en ExperienciaPremium y MapaUbicacion.
+ */
+.grid--split-asimetrico {
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .grid--split-asimetrico {
+    grid-template-columns: 55fr 45fr;
+  }
+}
+
+/* Variante invertida: contenido a la izquierda, imagen a la derecha */
+.grid--split-invertido {
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .grid--split-invertido {
+    grid-template-columns: 45fr 55fr;
+  }
+}
+
+/* En mobile, el orden visual puede diferir del DOM.
+   El bloque de media va primero visualmente en tablet+. */
+.grid--split-invertido .grid__media {
+  order: 2;
+}
+
+.grid__media {
+  order: 0;
+}
+
+@media (min-width: 768px) {
+  .grid--split-invertido .grid__media {
+    order: 0;
+  }
+}
+
+/* ── Footer grid: 3 columnas ── */
+.grid--footer {
+  grid-template-columns: 1fr;
+  gap: var(--espacio-8);
+}
+
+@media (min-width: 768px) {
+  .grid--footer {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--footer {
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: var(--espacio-12);
+  }
+}
+
+/* ── Variantes de gap ── */
+.grid--gap-sm {
+  gap: var(--grid-gap-sm);
+}
+.grid--gap-lg {
+  gap: var(--grid-gap-lg);
+}
+.grid--gap-0 {
+  gap: 0;
+}
+
+/* ── Alineación de celdas ── */
+.grid--align-start {
+  align-items: start;
+}
+.grid--align-center {
+  align-items: center;
+}
+.grid--align-end {
+  align-items: end;
+}
+.grid--align-stretch {
+  align-items: stretch;
+}
+
+/* ==========================================================
+   3. NAVBAR — POSICIONAMIENTO ESTRUCTURAL
+   Los estilos visuales (colores, tipografía) van en
+   components.css. Aquí solo posición, dimensiones y flujo.
+   ========================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-navbar);
+  width: 100%;
+  height: var(--navbar-height-mobile);
+
+  /*
+   * Hace que el navbar no colapse su contenido cuando
+   * tiene elementos absolutos internos.
+   */
+  contain: layout style;
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    height: var(--navbar-height);
+  }
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  gap: var(--espacio-4);
+}
+
+@media (min-width: 768px) {
+  .navbar__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+/* ── Logo ── */
+.navbar__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  max-height: var(--navbar-logo-max-h);
+}
+
+/* ── Menú ── */
+.navbar__menu {
+  display: none; /* oculto en mobile */
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .navbar__menu {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* ── Menú desplegado en mobile (clase activa via JS) ── */
+.navbar__menu--abierto {
+  display: block;
+  position: fixed;
+  top: var(--navbar-height-mobile);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-dropdown);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ── Acciones (lang + CTA) ── */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  flex-shrink: 0;
+}
+
+/* ── Hamburger — visible solo en mobile ── */
+.navbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: var(--espacio-2);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .navbar__toggle {
+    display: none;
+  }
+}
+
+/* ── Submenu: posicionamiento ── */
+.navbar__submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--espacio-2));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-dropdown);
+  min-width: var(--navbar-dropdown-min-w);
+}
+
+/* Abierto vía JS (data-js="dropdown-trigger" aria-expanded="true") */
+.navbar__item--has-dropdown:is(:hover, :focus-within) .navbar__submenu,
+.navbar__submenu--abierto {
+  display: block;
+}
+
+/* En mobile el submenu es accordion (inline, no absolute) */
+@media (max-width: 1023px) {
+  .navbar__submenu {
+    position: static;
+    transform: none;
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+/* Padding de compensación al navbar sticky para secciones con anchor */
+.main-content-offset {
+  scroll-margin-top: calc(var(--navbar-height-mobile) + var(--espacio-4));
+}
+
+@media (min-width: 1024px) {
+  .main-content-offset {
+    scroll-margin-top: calc(var(--navbar-height) + var(--espacio-4));
+  }
+}
+
+/* ==========================================================
+   4. HERO — POSICIONAMIENTO ESTRUCTURAL
+   Sistema de capas (z-index internos):
+     Layer 1 → SliderTrack (background)
+     Layer 2 → SlideOverlay (oscurecimiento)
+     Layer 3 → HeroContent (texto + CTAs)
+     Layer 4 → SliderControls (navegación)
+   ========================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: var(--hero-height);
+  min-height: var(--hero-height-min);
+  overflow: hidden;
+
+  /*
+   * Compensa el navbar sticky — el hero empieza exactamente
+   * donde termina el navbar, no hay gap ni solapamiento.
+   */
+  margin-top: calc(var(--navbar-height-mobile) * -1);
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    margin-top: calc(var(--navbar-height) * -1);
+  }
+}
+
+/* ── Slider: ocupa todo el hero ── */
+.hero__slider {
+  position: absolute;
+  inset: 0; /* shorthand: top/right/bottom/left: 0 */
+  width: 100%;
+  height: 100%;
+}
+
+/* ── SlideTrack: el carril que se desplaza ── */
+.hero__slide-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  will-change: transform; /* hint al browser para compositing */
+}
+
+/* ── Cada slide: fondo de imagen ── */
+.hero__slide {
+  position: relative;
+  flex: 0 0 100%; /* cada slide ocupa 100% del track */
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* ── Overlay de oscurecimiento (Layer 2) ── */
+.hero__slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-hero-medio);
+  z-index: 1;
+}
+
+/* ── Contenido del hero (Layer 3) ── */
+.hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*
+   * padding-top compensa el navbar sticky que el hero
+   * tiene que absorber (margin-top negativo).
+   */
+  padding-top: var(--navbar-height-mobile);
+}
+
+@media (min-width: 1024px) {
+  .hero__content {
+    padding-top: var(--navbar-height);
+  }
+}
+
+.hero__content-container {
+  width: 100%;
+  max-width: var(--hero-contenido-max-w);
+  padding-inline: var(--contenedor-padding-x);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero__content-container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    text-align: left;
+  }
+}
+
+/* ── Controles del slider (Layer 4) ── */
+.hero__controls {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--espacio-4);
+  pointer-events: none; /* no bloquea clicks en el contenido */
+}
+
+.hero__btn {
+  pointer-events: all; /* restaura clicks solo en los botones */
+  flex-shrink: 0;
+}
+
+/* ── Indicadores / dots ── */
+.hero__indicators {
+  position: absolute;
+  bottom: var(--espacio-6);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: var(--espacio-2);
+  align-items: center;
+}
+
+/* ── CTA Group del hero ── */
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  margin-block: var(--espacio-6);
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hero__cta-group {
+    justify-content: flex-start;
+  }
+}
+
+/* ── Meta info (ubicación, horario, urgencias) ── */
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hero__meta {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================
+   5. SECCIONES DE CONTENIDO
+   Padding vertical consistente por tokens.
+   Cada sección es un bloque independiente con su contenedor.
+   ========================================================== */
+
+/*
+ * Clase base para todas las secciones.
+ * Aplica el padding vertical del sistema de tokens.
+ */
+.seccion {
+  padding-block: var(--seccion-padding-y);
+  width: 100%;
+}
+
+.seccion--grande {
+  padding-block: var(--seccion-padding-y-grande);
+}
+
+.seccion--pequena {
+  padding-block: var(--seccion-padding-y-pequeno);
+}
+
+/* ── Header de sección (título + subtítulo) ── */
+.seccion__header {
+  margin-bottom: var(--seccion-gap-interna);
+  text-align: center;
+  max-width: var(--contenedor-max-angosto);
+  margin-inline: auto;
+  margin-bottom: var(--seccion-gap-interna);
+}
+
+/* ── CTA de sección (debajo del grid) ── */
+.seccion__cta {
+  margin-top: var(--espacio-10);
+  text-align: center;
+}
+
+/* ── Fondos alternados de sección ── */
+.seccion--fondo-primario {
+  background-color: var(--color-fondo-pagina);
+}
+.seccion--fondo-claro {
+  background-color: var(--color-fondo-secundario);
+}
+.seccion--fondo-blanco {
+  background-color: var(--color-fondo-primario);
+}
+.seccion--fondo-alt {
+  background-color: var(--color-superficie-alt);
+}
+.seccion--fondo-premium {
+  background: var(--gradiente-premium);
+}
+.seccion--fondo-invertido {
+  background-color: var(--color-primario-oscuro);
+}
+
+/* ── Secciones específicas del Home ── */
+
+/* ServiciosDestacados */
+.servicios-destacados__container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--seccion-padding-y);
+}
+
+@media (min-width: 768px) {
+  .servicios-destacados__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .servicios-destacados__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+/* ExperienciaPremium: split layout */
+.experiencia-premium__container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--seccion-padding-y);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap-lg);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .experiencia-premium__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    grid-template-columns: 55fr 45fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .experiencia-premium__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+    gap: var(--espacio-16);
+  }
+}
+
+/* Nosotros */
+.nosotros__container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--seccion-padding-y);
+}
+
+@media (min-width: 768px) {
+  .nosotros__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .nosotros__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+.nosotros__header {
+  text-align: center;
+  max-width: var(--contenedor-max-angosto);
+  margin-inline: auto;
+  margin-bottom: var(--seccion-gap-interna);
+}
+
+.nosotros__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 1024px) {
+  .nosotros__metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* DentistasPreview */
+.dentistas-preview__container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--seccion-padding-y);
+}
+
+@media (min-width: 768px) {
+  .dentistas-preview__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dentistas-preview__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+.dentistas-preview__header {
+  text-align: center;
+  max-width: var(--contenedor-max-angosto);
+  margin-inline: auto;
+  margin-bottom: var(--seccion-gap-interna);
+}
+
+.dentistas-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 768px) {
+  .dentistas-preview__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dentistas-preview__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dentistas-preview__section-cta {
+  margin-top: var(--espacio-10);
+  text-align: center;
+}
+
+/* Grid de servicios destacados */
+.servicios-destacados__header {
+  text-align: center;
+  max-width: var(--contenedor-max-angosto);
+  margin-inline: auto;
+  margin-bottom: var(--seccion-gap-interna);
+}
+
+.servicios-destacados__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 768px) {
+  .servicios-destacados__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .servicios-destacados__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.servicios-destacados__section-cta {
+  margin-top: var(--espacio-10);
+  text-align: center;
+}
+
+/* MapaUbicacion: split layout */
+.mapa-ubicacion__container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--seccion-padding-y);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--grid-gap-lg);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .mapa-ubicacion__container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    grid-template-columns: 55fr 45fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mapa-ubicacion__container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+    gap: var(--espacio-12);
+  }
+}
+
+/* Embed del mapa responsivo */
+.mapa-ubicacion__embed-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 66.67%; /* aspect ratio 3:2 */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radio-xl);
+}
+
+@media (min-width: 768px) {
+  .mapa-ubicacion__embed-wrapper {
+    padding-bottom: 70%;
+  }
+}
+
+.mapa-ubicacion__embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapa-ubicacion__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-6);
+}
+
+.mapa-ubicacion__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  align-items: center;
+}
+
+/* ==========================================================
+   6. SHAPE DIVIDERS
+   Contenedores de SVG decorativos entre secciones.
+   Posicionamiento relativo con overflow oculto para que
+   los SVGs puedan tener ancho mayor que su contenedor.
+   ========================================================== */
+
+.shape-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0; /* elimina espacio fantasma bajo inline SVG */
+  pointer-events: none;
+}
+
+.shape-divider svg {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+}
+
+/* Divider primario: entre Hero y Servicios */
+.shape-divider--primary {
+  margin-top: calc(var(--espacio-6) * -1);
+}
+
+/* Divider secundario: entre DentistasPreview y Mapa */
+.shape-divider--secondary {
+  margin-bottom: calc(var(--espacio-6) * -1);
+}
+
+/* ==========================================================
+   7. FOOTER — POSICIONAMIENTO ESTRUCTURAL
+   ========================================================== */
+
+.footer {
+  width: 100%;
+}
+
+/* ── Footer Main: wrapper del contenedor ── */
+.footer__main {
+  width: 100%;
+}
+
+.footer__main-container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--espacio-16);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espacio-10);
+}
+
+@media (min-width: 768px) {
+  .footer__main-container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-12);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__main-container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+    grid-template-columns: 1.4fr 2fr 1fr;
+    gap: var(--espacio-16);
+  }
+}
+
+/* ── Footer Nav: grupos de links ── */
+.footer__nav {
+  display: grid;
+  gap: var(--espacio-8);
+}
+
+@media (min-width: 768px) {
+  .footer__nav {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espacio-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__nav {
+    grid-column: auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Footer Payments: ancho completo ── */
+.footer__payments {
+  width: 100%;
+}
+
+.footer__payments-container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--espacio-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-4);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .footer__payments-container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__payments-container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+.footer__payments-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-3);
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .footer__payments-icons {
+    justify-content: flex-end;
+  }
+}
+
+/* ── Footer Bottom: legal ── */
+.footer__bottom {
+  width: 100%;
+}
+
+.footer__bottom-container {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--espacio-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-3);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .footer__bottom-container {
+    padding-inline: var(--contenedor-padding-x-tablet);
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__bottom-container {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+/* Footer legal links: horizontal */
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-4);
+  align-items: center;
+}
+
+/* ── Footer Developer: crédito final ── */
+.footer__developer {
+  width: 100%;
+}
+
+.footer__developer-credit {
+  max-width: var(--contenedor-max);
+  margin-inline: auto;
+  padding-inline: var(--contenedor-padding-x);
+  padding-block: var(--espacio-4);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer__developer-credit {
+    padding-inline: var(--contenedor-padding-x-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__developer-credit {
+    padding-inline: var(--contenedor-padding-x-desktop);
+  }
+}
+
+/* ==========================================================
+   8. FLOTANTES (WhatsApp button)
+   Fixed: permanece visible en scroll.
+   z-index máximo del sistema.
+   ========================================================== */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--espacio-6);
+  right: var(--espacio-6);
+  z-index: var(--z-flotante);
+
+  /*
+   * Flex para centrar el icono dentro del botón circular.
+   */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--wa-size);
+  height: var(--wa-size);
+  border-radius: var(--wa-radio);
+
+  /*
+   * Tooltip: posicionado a la izquierda del botón.
+   */
+  position: fixed;
+}
+
+/* Tooltip del WhatsApp button */
+.whatsapp-float__tooltip {
+  position: absolute;
+  right: calc(100% + var(--espacio-3));
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  border-radius: var(--radio-md);
+
+  /*
+   * Oculto por defecto, visible en hover vía components.css
+   */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ==========================================================
+   9. UTILIDADES DE DISPLAY
+   Clases de display responsivo. Nomenclatura:
+   .d-{valor} → global
+   .d-{breakpoint}-{valor} → desde ese breakpoint
+   ========================================================== */
+
+.d-none {
+  display: none;
+}
+.d-block {
+  display: block;
+}
+.d-inline {
+  display: inline;
+}
+.d-inline-block {
+  display: inline-block;
+}
+.d-flex {
+  display: flex;
+}
+.d-inline-flex {
+  display: inline-flex;
+}
+.d-grid {
+  display: grid;
+}
+
+/* Ocultar en mobile, mostrar en tablet+ */
+@media (min-width: 768px) {
+  .d-tablet-none {
+    display: none;
+  }
+  .d-tablet-block {
+    display: block;
+  }
+  .d-tablet-flex {
+    display: flex;
+  }
+  .d-tablet-grid {
+    display: grid;
+  }
+}
+
+/* Ocultar en tablet-, mostrar solo en desktop */
+@media (max-width: 767px) {
+  .d-mobile-none {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .d-desktop-none {
+    display: none;
+  }
+  .d-desktop-block {
+    display: block;
+  }
+  .d-desktop-flex {
+    display: flex;
+  }
+  .d-desktop-grid {
+    display: grid;
+  }
+}
+
+@media (max-width: 1023px) {
+  .d-solo-desktop {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   10. UTILIDADES DE POSICIONAMIENTO
+   ========================================================== */
+
+.pos-relative {
+  position: relative;
+}
+.pos-absolute {
+  position: absolute;
+}
+.pos-fixed {
+  position: fixed;
+}
+.pos-sticky {
+  position: sticky;
+}
+.pos-static {
+  position: static;
+}
+
+/* Centrado absoluto */
+.pos-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Cubre todo el padre */
+.pos-inset-0 {
+  position: absolute;
+  inset: 0;
+}
+
+/* Z-index semánticos */
+.z-base {
+  z-index: var(--z-base);
+}
+.z-elevado {
+  z-index: var(--z-elevado);
+}
+.z-sticky {
+  z-index: var(--z-sticky);
+}
+
+/* Overflow */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+/* Aspect ratios */
+.aspect-cuadrado {
+  aspect-ratio: 1 / 1;
+}
+.aspect-retrato {
+  aspect-ratio: 3 / 4;
+}
+.aspect-paisaje {
+  aspect-ratio: 4 / 3;
+}
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+.aspect-panorama {
+  aspect-ratio: 21 / 9;
+}
+
+/* Ancho y alto utilitarios */
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.w-auto {
+  width: auto;
+}
+.h-auto {
+  height: auto;
+}
+.min-w-0 {
+  min-width: 0;
+} /* fix crítico para grids con overflow */
+
+/* ==========================================================
+   11. UTILIDADES DE ESPACIADO
+   Nomenclatura: .{propiedad}-{valor}
+   m  = margin   · p = padding
+   t  = top      · b = bottom · l = left · r = right
+   x  = inline   · y = block
+   ========================================================== */
+
+/* ── Margin ── */
+.m-auto {
+  margin: auto;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.mb-0 {
+  margin-bottom: 0;
+}
+.mt-4 {
+  margin-top: var(--espacio-4);
+}
+.mt-6 {
+  margin-top: var(--espacio-6);
+}
+.mt-8 {
+  margin-top: var(--espacio-8);
+}
+.mt-10 {
+  margin-top: var(--espacio-10);
+}
+.mt-12 {
+  margin-top: var(--espacio-12);
+}
+.mb-4 {
+  margin-bottom: var(--espacio-4);
+}
+.mb-6 {
+  margin-bottom: var(--espacio-6);
+}
+.mb-8 {
+  margin-bottom: var(--espacio-8);
+}
+.mb-10 {
+  margin-bottom: var(--espacio-10);
+}
+.mb-12 {
+  margin-bottom: var(--espacio-12);
+}
+
+/* ── Padding ── */
+.p-0 {
+  padding: 0;
+}
+.p-4 {
+  padding: var(--espacio-4);
+}
+.p-6 {
+  padding: var(--espacio-6);
+}
+.p-8 {
+  padding: var(--espacio-8);
+}
+.px-4 {
+  padding-inline: var(--espacio-4);
+}
+.px-6 {
+  padding-inline: var(--espacio-6);
+}
+.px-8 {
+  padding-inline: var(--espacio-8);
+}
+.py-4 {
+  padding-block: var(--espacio-4);
+}
+.py-6 {
+  padding-block: var(--espacio-6);
+}
+.py-8 {
+  padding-block: var(--espacio-8);
+}
+.py-12 {
+  padding-block: var(--espacio-12);
+}
+.py-16 {
+  padding-block: var(--espacio-16);
+}
+.py-20 {
+  padding-block: var(--espacio-20);
+}
+.py-seccion {
+  padding-block: var(--seccion-padding-y);
+}
+
+/* ==========================================================
+   12. UTILIDADES DE FLEX / GRID
+   ========================================================== */
+
+/* ── Flex ── */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-grow {
+  flex-grow: 1;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-stretch {
+  align-items: stretch;
+}
+.items-baseline {
+  align-items: baseline;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.self-start {
+  align-self: flex-start;
+}
+.self-center {
+  align-self: center;
+}
+.self-end {
+  align-self: flex-end;
+}
+.self-stretch {
+  align-self: stretch;
+}
+
+/* ── Gap ── */
+.gap-2 {
+  gap: var(--espacio-2);
+}
+.gap-3 {
+  gap: var(--espacio-3);
+}
+.gap-4 {
+  gap: var(--espacio-4);
+}
+.gap-6 {
+  gap: var(--espacio-6);
+}
+.gap-8 {
+  gap: var(--espacio-8);
+}
+.gap-10 {
+  gap: var(--espacio-10);
+}
+.gap-12 {
+  gap: var(--espacio-12);
+}
+
+/* ── Orden (para reordenar en responsive) ── */
+.order-first {
+  order: -1;
+}
+.order-last {
+  order: 99;
+}
+.order-none {
+  order: 0;
+}
+
+@media (min-width: 768px) {
+  .order-tablet-first {
+    order: -1;
+  }
+  .order-tablet-none {
+    order: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .order-desktop-first {
+    order: -1;
+  }
+  .order-desktop-none {
+    order: 0;
+  }
+}
+
+/* ==========================================================
+   13. SCROLL Y OVERFLOW
+   ========================================================== */
+
+/*
+ * Contenedores con scroll horizontal (tablas, sliders de cards).
+ * -webkit-overflow-scrolling: touch mejora inercia en iOS.
+ */
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-borde-enfasis) transparent;
+}
+
+/*
+ * Ocultar scrollbar visualmente pero mantener funcionalidad.
+ * Útil para sliders donde los controles reemplazan al scrollbar.
+ */
+.scroll-sin-barra {
+  scrollbar-width: none;
+}
+
+.scroll-sin-barra::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+ * Snap scroll: para carruseles y sliders touch.
+ * Se aplica al contenedor padre.
+ */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Elemento hijo que se alinea al snap.
+ */
+.scroll-snap-item {
+  scroll-snap-align: start;
+}

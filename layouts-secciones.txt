@@ -1,0 +1,1333 @@
+# ESTRUCTURA LAYOUT DEL SITIO SONRISA PREMIUM MX SECCIÓN POR SECCIÓN
+
+# 1) ESTRUCTURA DE NAVBAR
+
+```
+Navbar
+├── NavbarContainer
+│   ├── NavbarLogo
+│   ├── NavbarMenu
+│   │   ├── NavItemInicio
+│   │   ├── NavItemTratamientos (Dropdown)
+│   │   │   └── SubmenuTratamientos
+│   │   │       ├── TratamientoItem
+│   │   │       ├── TratamientoItem
+│   │   │       ├── TratamientoItem
+│   │   │       ├── TratamientoItem
+│   │   │       └── TratamientoItem
+│   │   ├── NavItemNosotros
+│   │   ├── NavItemDentistas
+│   │   ├── NavItemBlog
+│   │   └── NavItemContacto
+│   │
+│   ├── NavbarActions
+│   │   ├── LangToggle
+│   │   └── NavbarCtaAgendar
+│   │
+│   └── NavbarToggle (hamburger - mobile)
+```
+
+# DESKTOP (≥1024px)
+
+## Layout
+
+```
+[ Logo ]   [ Menu horizontal ]   [ Lang | CTA ]
+```
+
+---
+
+## Distribución
+
+```
+NavbarContainer
+├── Logo (izquierda)
+├── Menu (centro)
+└── Actions (derecha)
+```
+
+# TABLET (768px – 1023px)
+
+## Layout
+
+```
+[ Logo ]   [ Menu reducido ]   [ Lang | CTA ]
+```
+
+# MOBILE (<768px)
+
+## Layout inicial
+
+```
+[ Logo ]   [ Lang ]   [ ☰ ]
+```
+
+# COMPORTAMIENTO POR BREAKPOINT
+
+## Desktop (≥1024px)
+
+- `NavbarMenu`: horizontal
+- `Tratamientos`:
+    - Hover → abre dropdown
+    - Click opcional (fallback accesible)
+- `LangToggle`: visible
+- `CTA`: visible
+- `Hamburger`: oculto
+
+---
+
+## Tablet (768px – 1023px)
+
+- Igual que desktop, con ajuste de spacing
+- Dropdown:
+    - Preferible **click + hover híbrido**
+- Mantener todo visible (sin colapsar aún)
+
+---
+
+## Mobile (<768px)
+
+- `NavbarMenu`: oculto por defecto
+- `NavbarToggle`: abre menú vertical
+
+### Comportamiento clave:
+
+- `Tratamientos`:
+    - SOLO click
+    - Expande tipo accordion
+
+```
+Tratamientos
+  ↓
+[ Limpieza ]
+[ Blanqueamiento ]
+[ Ortodoncia ]
+...
+```
+
+- `LangToggle`: dentro de `NavbarActions` (visible en menú desplegado)
+- `CTA`: visible dentro del menú + opcional sticky
+
+# DECISIONES IMPORTANTES
+
+### 1. `Tratamientos` usa `<button>` (no `<a>`)
+
+Correcto:
+
+- Evita navegación accidental
+- Permite control total del dropdown
+
+---
+
+# HERO CON IMAGE SLIDER
+
+## Estructura
+
+```
+Hero
+├── HeroSlider
+│   ├── SlideItem
+│   │   ├── SlideBackgroundImage
+│   │   └── SlideOverlay
+│   │
+│   ├── SlideItem (...)
+│   └── SliderControls
+│       ├── PrevButton
+│       ├── NextButton
+│       └── Indicators
+│
+├── HeroContent
+│   ├── HeroHeadline
+│   ├── HeroSubheadline
+│   ├── HeroCtaGroup
+│   │   ├── CtaPrimary (Agendar)
+│   │   └── CtaSecondary (Ver Tratamientos)
+│   └── HeroMeta (horarios / ubicación breve)
+```
+
+---
+
+## Características técnicas
+
+- `HeroContent` va en **overlay absoluto**
+- `SlideItem` controla imagen (no `<img>`, usar background)
+
+## Importancia en el proyecto
+
+- Necesitas mostrar **varios servicios visualmente**
+- Portafolio fuerte (antes/después, instalaciones, equipo)
+
+# CONTENIDO MÍNIMO REQUERIDO
+
+```
+HeroHeadline:
+→ Propuesta de valor clara (ej: “Sonrisas saludables con tecnología de vanguardia”)
+
+HeroSubheadline:
+→ Diferenciador (rapidez, especialistas, ubicación)
+
+CtaPrimary:
+→ Acción directa (Agendar)
+
+CtaSecondary:
+→ Acción exploratoria (Servicios / WhatsApp)
+
+HeroMeta:
+→ Datos rápidos (CDMX, horarios, urgencias)
+```
+
+# HERO — LAYOUT (IMAGE SLIDER)
+
+## Distribución general
+
+```
+[ Hero (viewport completo) ]
+
+┌────────────────────────────────────────────┐
+│                                            │
+│   (Slider Background - imágenes dinámicas) │
+│                                            │
+│   ┌────────────────────────────────────┐   │
+│   │ HeroContent (overlay centrado)     │   │
+│   │                                    │   │
+│   │ Headline                          │   │
+│   │ Subheadline                       │   │
+│   │                                    │   │
+│   │ [CTA Primary] [CTA Secondary]     │   │
+│   │                                    │   │
+│   │ MetaInfo (ubicación / horario)    │   │
+│   └────────────────────────────────────┘   │
+│                                            │
+│ Prev ◀                        ▶ Next        │
+│                                            │
+│         ●   ○   ○   ○  (Indicators)         │
+└────────────────────────────────────────────┘
+```
+
+# ESTRUCTURA JERÁRQUICA
+
+```
+Hero
+├── HeroSlider (fondo completo)
+│   ├── SlideTrack
+│   │   ├── SlideItem
+│   │   ├── SlideItem
+│   │   ├── SlideItem
+│   │   └── SlideItem
+│   │
+│   ├── SliderControls
+│   │   ├── PrevButton (lado izquierdo centrado vertical)
+│   │   └── NextButton (lado derecho centrado vertical)
+│   │
+│   └── SliderIndicators (parte inferior centrada)
+│
+└── HeroContent (overlay sobre slider)
+    ├── HeroContentContainer
+    │   ├── HeroHeadline
+    │   ├── HeroSubheadline
+    │   ├── HeroCtaGroup
+    │   │   ├── CtaPrimary
+    │   │   └── CtaSecondary
+    │   └── HeroMeta
+```
+
+# REGLAS DE LAYOUT
+
+## 1) Separación de capas
+
+```
+Layer 1 → Slider (background dinámico)
+Layer 2 → Overlay (oscurecimiento / contraste)
+Layer 3 → HeroContent (interacción)
+Layer 4 → Controls (navegación)
+```
+
+---
+
+## 2) Jerarquía visual
+
+1. Headline
+2. CTA Primary
+3. Subheadline
+4. CTA Secondary
+5. Meta
+
+---
+
+## 3) Constraints
+
+- Máximo:
+    - 2 CTAs
+    - 1 mensaje principal
+- No mezclar contenido por slide (el contenido es global, no por imagen)
+
+---
+
+# ESTRUCTURA SERVICIOS DESTACADOS
+
+# GRID (4 CARDS)
+
+## Estructura
+
+```
+ServiciosDestacados
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionSubtitle
+│
+└── ServiciosGrid
+    ├── ServicioCard
+    ├── ServicioCard
+    ├── ServicioCard
+    └── ServicioCard
+```
+
+---
+
+## Layout visual
+
+```
+[ Title + Subtitle ]
+
+[ Card ] [ Card ] [ Card ]
+[ Card ]
+```
+
+---
+
+## Características
+
+- Distribución uniforme
+- Cada card representa 1 servicio
+- Aspect ratio 1:1
+
+# ESTRUCTURA COMPLETA DE LA SECCIÓN
+
+```
+ServiciosDestacados
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionSubtitle
+│
+├── ServiciosGrid
+│   ├── ServicioCard
+│   ├── ServicioCard
+│   ├── ServicioCard
+│   └── ServicioCard
+│
+└── SectionCta
+    └── CtaVerTodos (link a /Pages/Tratamientos.html)
+```
+
+# LAYOUT RESPONSIVE
+
+## Desktop (≥1024px)
+
+```
+[ SectionHeader ]
+
+[ Card ] [ Card ] [ Card ]
+[ Card ] (opcional)
+```
+
+- Grid de **3 columnas**
+- 4ta card pasa a segunda fila
+- Balance visual horizontal
+
+---
+
+## Tablet (768px – 1023px)
+
+```
+[ SectionHeader ]
+
+[ Card ] [ Card ]
+[ Card ] [ Card ]
+```
+
+- Grid de **2 columnas**
+- Lectura más cómoda
+- Mantiene jerarquía clara
+
+---
+
+## Mobile (<768px)
+
+```
+[ SectionHeader ]
+
+[ Card ]
+[ Card ]
+[ Card ]
+[ Card ]
+```
+
+- **1 columna**
+- Stack vertical
+- Cards ocupan ancho completo
+
+# ESTRUCTURA INTERNA — SERVICIO CARD
+
+```
+ServicioCard
+├── CardMedia
+│   └── CardImage
+│
+├── CardBody
+│   ├── CardTitle
+│   ├── CardDescription
+│   └── CardMeta (opcional: duración / categoría)
+│
+└── CardFooter
+    └── CardCta (Ver más / Ver tratamiento)
+```
+
+## Jerarquía dentro de la card
+
+```
+[ Imagen ]
+
+Título
+
+Descripción breve
+
+Meta (opcional)
+
+[ CTA ]
+```
+
+# DISPOSICIÓN VISUAL DE LA CARD
+
+```
+┌─────────────────────┐
+│     Imagen          │
+├─────────────────────┤
+│ Título              │
+│ Descripción         │
+│ Meta                │
+│                     │
+│ [ CTA ]             │
+└─────────────────────┘
+```
+
+# CTA DE SECCIÓN
+
+## Ubicación
+
+Debajo del grid:
+
+```
+[ Grid de servicios ]
+
+      [ Ver todos los tratamientos ]
+```
+
+# DECISIONES TOMADAS
+
+- Grid simple → escalable
+- CTA doble (card + sección) → mejora conversión
+- Separación `CardMedia / Body / Footer` → mantenibilidad
+
+---
+
+# ESTRUCTURA LAYOUT EXPERIENCIA PREMIUM
+
+# SPLIT LAYOUT (IMAGEN + CONTENIDO)
+
+## Estructura
+
+```
+ExperienciaPremium
+├── SectionContainer
+│   ├── MediaBlock
+│   │   └── MediaImage
+│   │
+│   └── ContentBlock
+│       ├── SectionTitle
+│       ├── SectionDescription
+│       │
+│       └── BeneficiosList
+│           ├── BeneficioItem
+│           ├── BeneficioItem
+│           └── BeneficioItem
+```
+
+---
+
+## Layout visual
+
+```
+[ Imagen clínica / equipo ]   [ Title ]
+   [ Texto Overlay ]          [ Descripción ]
+                             • Beneficio
+                             • Beneficio
+                             • Beneficio
+```
+
+---
+
+## Características
+
+- Balance visual fuerte
+- Más storytelling
+- Mayor percepción de marca
+- Imagen aspect ratio 4:3
+
+---
+
+# TABLET (768px – 1023px)
+
+## Layout
+
+```
+ExperienciaPremium
+
+[ MediaBlock ]
+[ ContentBlock ]
+```
+
+---
+
+## Estructura detallada
+
+```
+ExperienciaPremium
+├── SectionContainer
+│   ├── MediaBlock
+│   │   └── MediaImage
+│   │
+│   └── ContentBlock
+│       ├── SectionTitle
+│       ├── SectionDescription
+│       └── BeneficiosList
+│           ├── BeneficioItem
+│           ├── BeneficioItem
+│           └── BeneficioItem
+```
+
+---
+
+## Reglas de layout (tablet)
+
+- Cambio de **horizontal → vertical**
+- Orden:
+    1. Imagen
+    2. Contenido
+- Mantiene jerarquía narrativa:
+    - primero impacto visual
+    - luego información
+
+---
+
+# 2) MOBILE (<768px)
+
+## Layout
+
+```
+ExperienciaPremium
+
+[ MediaBlock ]
+[ ContentBlock ]
+```
+
+---
+
+## Estructura (idéntica a tablet)
+
+```
+ExperienciaPremium
+├── SectionContainer
+│   ├── MediaBlock
+│   │   └── MediaImage
+│   │
+│   └── ContentBlock
+│       ├── SectionTitle
+│       ├── SectionDescription
+│       └── BeneficiosList
+│           ├── BeneficioItem
+│           ├── BeneficioItem
+│           └── BeneficioItem
+```
+
+---
+
+## Diferencias reales vs tablet
+
+No cambian nodos, solo comportamiento esperado:
+
+- `BeneficiosList`:
+    - spacing más compacto
+- `MediaBlock`:
+    - ocupa ancho completo
+- Contenido:
+    - flujo completamente vertical
+
+# DISPOSICIÓN INTERNA (CONTENT BLOCK)
+
+```
+SectionTitle
+
+SectionDescription
+
+• Beneficio
+• Beneficio
+• Beneficio
+```
+
+# ESTRUCTURA BASE — BENEFICIO ITEM
+
+```
+BeneficioItem
+├── BeneficioIcon
+├── BeneficioContent
+│   ├── BeneficioTitle
+│   └── BeneficioDescription
+```
+
+---
+
+# DISPOSICIÓN VISUAL
+
+```
+[ Icon ]  Título
+          Descripción breve
+```
+
+# JERARQUÍA INTERNA
+
+```
+1. Icon (ancla visual)
+2. Title (diferenciador)
+3. Description (soporte)
+```
+
+## BeneficioTitle
+
+- 2–4 palabras
+- Ej:
+    - “Tecnología avanzada”
+    - “Atención personalizada”
+    - “Resultados rápidos”
+
+## BeneficioDescription
+
+- 1 línea (máx 2)
+- Explica el valor real
+
+# REGLAS TÉCNICAS
+
+## 1) No agregar CTA aquí
+
+Este componente es **informativo**, no de conversión.
+
+---
+
+## 2) Iconos consistentes
+
+- Mismo tamaño lógico
+- Mismo estilo (outline o solid, no mezclar)
+
+---
+
+# ESTRUCTURA LAYOUT NOSOTROS
+
+# STACK + MÉTRICAS (credibilidad cuantificable)
+
+## Estructura
+
+```
+Nosotros
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionDescription
+│
+├── MetricsGrid
+│   ├── MetricItem
+│   ├── MetricItem
+│   ├── MetricItem
+│   └── MetricItem
+│
+```
+
+---
+
+## Layout visual
+
+```
+[ Title ]
+[ Descripción ]
+
+[ 10+ años ] [ 500+ pacientes ]
+[ 5 especialistas ] [ tecnología X ]
+```
+
+# LAYOUT RESPONSIVE
+
+## Desktop (referencia)
+
+```
+[ SectionHeader ]
+
+[ Metric ] [ Metric ] [ Metric ] [ Metric ]
+```
+
+## Tablet (768px – 1023px)
+
+```
+Nosotros
+
+[ SectionHeader ]
+
+[ Metric ] [ Metric ]
+[ Metric ] [ Metric ]
+```
+
+## Mobile (<768px)
+
+```
+Nosotros
+
+[ SectionHeader ]
+
+[ Metric ]
+[ Metric ]
+[ Metric ]
+[ Metric ]
+```
+
+# ESTRUCTURA COMPLETA DE LA SECCIÓN
+
+```
+Nosotros
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionDescription
+│
+├── MetricsGrid
+│   ├── MetricItem
+│   ├── MetricItem
+│   ├── MetricItem
+│   └── MetricItem
+```
+
+# ESTRUCTURA — METRIC ITEM
+
+## Base
+
+```
+MetricItem
+├── MetricValue
+├── MetricLabel
+```
+
+## Disposición visual
+
+```
+[ 10+ ]
+Años de experiencia
+```
+
+# JERARQUÍA INTERNA
+
+```
+1. MetricValue   → dato clave (impacto)
+2. MetricLabel   → contexto
+3. MetricSupport → refuerzo opcional
+```
+
+# CONTENIDO RECOMENDADO
+
+## MetricValue
+
+- Corto y contundente:
+    - `10+`
+    - `500+`
+    - `24h`
+    - `100%`
+
+## MetricLabel
+
+- Explicación directa:
+    - “Años de experiencia”
+    - “Pacientes atendidos”
+    - “Atención de urgencias”
+
+---
+
+# ESTRUCTURA LAYOUT DENTISTAS PREVIEW
+
+# GRID DE CARDS (perfil resumido)
+
+## Estructura
+
+```
+DentistasPreview
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionSubtitle
+│
+├── DentistasGrid
+│   ├── DentistaCard
+│   ├── DentistaCard
+│   ├── DentistaCard
+│   └── DentistaCard (opcional)
+│
+└── SectionCta
+    └── CtaVerEquipo (→ /Pages/Dentistas.html)
+```
+
+---
+
+## Layout visual
+
+```
+[ Title + Subtitle ]
+
+[ Card ] [ Card ] [ Card ]
+[ Card ]
+
+[ Ver equipo completo ]
+```
+
+---
+
+## Características
+
+- Escaneo rápido
+- Consistente con `ServiciosDestacados`
+- Fácil de escalar
+- Imágenes aspect ratio 3:4
+
+# LAYOUT RESPONSIVE
+
+## Desktop (≥1024px)
+
+```
+[ SectionHeader ]
+
+[ Card ] [ Card ] [ Card ]
+[ Card ] (opcional)
+
+[ Ver equipo completo ]
+```
+
+- Grid de **3 columnas**
+- 4ta card pasa a segunda fila
+
+---
+
+## Tablet (768px – 1023px)
+
+```
+[ SectionHeader ]
+
+[ Card ] [ Card ]
+[ Card ] [ Card ]
+
+[ Ver equipo completo ]
+```
+
+- Grid de **2 columnas**
+- Balance visual y lectura cómoda
+
+---
+
+## Mobile (<768px)
+
+```
+[ SectionHeader ]
+
+[ Card ]
+[ Card ]
+[ Card ]
+[ Card ]
+
+[ Ver equipo completo ]
+```
+
+- **1 columna**
+- Stack vertical
+
+---
+
+# 2) ESTRUCTURA COMPLETA DE LA SECCIÓN
+
+```
+DentistasPreview
+├── SectionHeader
+│   ├── SectionTitle
+│   └── SectionSubtitle
+│
+├── DentistasGrid
+│   ├── DentistaCard
+│   ├── DentistaCard
+│   ├── DentistaCard
+│   └── DentistaCard
+│
+└── SectionCta
+    └── CtaVerEquipo
+```
+
+# ESTRUCTURA — DENTISTA CARD
+
+## Base
+
+```
+DentistaCard
+├── CardMedia
+│   └── CardImage (foto del dentista)
+│
+├── CardBody
+│   ├── CardTitle (nombre)
+│   ├── CardSubtitle (especialidad)
+│   └── CardMeta (años / certificación opcional)
+│
+└── CardFooter
+    └── CardCta (Ver perfil / Conocer más)
+```
+
+---
+
+## Disposición visual
+
+```
+┌─────────────────────┐
+│     Foto            │
+├─────────────────────┤
+│ Nombre              │
+│ Especialidad        │
+│ Meta                │
+│                     │
+│ [ CTA ]             │
+└─────────────────────┘
+```
+
+1. Imagen (rostro = confianza)
+2. Nombre
+3. Especialidad
+4. Meta (refuerzo)
+5. CTA
+
+# CONTENIDO RECOMENDADO
+
+## CardTitle
+
+- Nombre completo o nombre + apellido
+
+## CardSubtitle
+
+- Especialidad clara:
+    - “Ortodoncia”
+    - “Implantología”
+
+## CardMeta (opcional)
+
+- 1 dato máximo:
+    - “10+ años”
+    - “Certificado en X”
+
+---
+
+# 6) CTA DE SECCIÓN
+
+## Ubicación
+
+```
+[ Grid de dentistas ]
+
+      [ Ver equipo completo ]
+```
+
+---
+
+## Estructura
+
+```
+SectionCta
+└── CtaVerEquipo (→ /Pages/Dentistas.html)
+```
+
+# RESULTADO FINAL
+
+- Desktop → 3 columnas
+- Tablet → 2 columnas
+- Mobile → 1 columna
+- Card → clara, enfocada en confianza
+
+---
+
+# ESTRUCTURA MAPA/UBICACIÓN
+
+# SPLIT (MAPA + INFO)
+
+## Estructura
+
+```
+MapaUbicacion
+├── SectionContainer
+│   ├── MapBlock
+│   │   └── MapEmbed
+│   │
+│   └── InfoBlock
+│       ├── SectionTitle
+│       ├── Address
+│       ├── Schedule
+│       ├── ContactQuick
+│       └── MapCtaGroup
+│           ├── CtaComoLlegar
+│           └── CtaAgendar
+```
+
+---
+
+## Layout visual
+
+```
+[ MAPA ]     [ Title ]
+             Dirección
+             Horario
+             Contacto
+             [ Cómo llegar ]
+             [ Agendar ]
+```
+
+# LAYOUT RESPONSIVE
+
+## Desktop (referencia)
+
+```
+[ MapBlock ]   [ InfoBlock ]
+```
+
+---
+
+## Tablet (768px – 1023px)
+
+```
+MapaUbicacion
+
+[ MapBlock ]
+[ InfoBlock ]
+```
+
+### Reglas
+
+- Cambio de **horizontal → vertical**
+- Orden:
+    1. Mapa
+    2. Información
+- Mantiene contexto visual antes de datos
+
+---
+
+## Mobile (<768px)
+
+```
+MapaUbicacion
+
+[ MapBlock ]
+[ InfoBlock ]
+```
+
+### Reglas
+
+- Igual que tablet
+- Stack vertical
+- Lectura lineal
+
+---
+
+# 2) ESTRUCTURA COMPLETA
+
+```
+MapaUbicacion
+├── SectionContainer
+│   ├── MapBlock
+│   │   └── MapEmbed
+│   │
+│   └── InfoBlock
+│       ├── SectionTitle
+│       ├── Address
+│       ├── Schedule
+│       ├── ContactQuick
+│       └── MapCtaGroup
+│           ├── CtaComoLlegar
+│           └── CtaAgendar
+```
+
+# MAPBLOCK
+
+## Estructura
+
+```
+MapBlock
+└── MapEmbed
+```
+
+## Nota técnica
+
+- Fuente: Google Maps embed
+- No interacción compleja en esta fase
+
+# INFOBLOCK
+
+## Estructura
+
+```
+InfoBlock
+├── SectionTitle
+├── Address
+├── Schedule
+├── ContactQuick
+└── MapCtaGroup
+```
+
+---
+
+## Disposición interna
+
+```
+Title
+
+Dirección
+
+Horario
+
+Contacto rápido
+
+[ Cómo llegar ]
+[ Agendar ]
+```
+
+---
+
+# 5) CONTACT QUICK (COMPONENTE)
+
+## Estructura
+
+```
+ContactQuick
+├── ContactItem
+│   ├── ContactIcon
+│   └── ContactText
+│
+├── ContactItem
+└── ContactItem
+```
+
+---
+
+## Ejemplo de contenido
+
+```
+[ Icon ] Teléfono
+[ Icon ] WhatsApp
+```
+
+---
+
+# MAP CTA GROUP
+
+## Estructura
+
+```
+MapCtaGroup
+├── CtaComoLlegar
+└── CtaAgendar
+```
+
+## Disposición
+
+```
+[ Cómo llegar ]   [ Agendar ]
+```
+
+---
+
+## Función
+
+- `CtaComoLlegar` → abre Google Maps
+- `CtaAgendar` → flujo principal (WhatsApp / contacto)
+
+## No saturar ContactQuick
+
+Máximo 2 items:
+
+- Teléfono
+- WhatsAp
+
+---
+
+# ESTRUCTURA LAYOUT FOOTER
+
+# ESTRUCTURA BASE
+
+```
+Footer
+├── FooterMain
+│   ├── FooterBrand
+│   ├── FooterNav
+│   └── FooterContact
+│
+├── FormasDePago
+│
+├── FooterBottom
+│
+└── FooterDeveloper
+```
+
+# DESKTOP (≥1024px)
+
+```
+[ FooterBrand ] [ FooterNav ] [ FooterContact ]
+
+[ FormasDePago (full width) ]
+
+-------------------------------------------
+
+[ Copyright ] [ LegalLinks ]
+
+-------------------------------------------
+
+[ Desarrollado por Insomne ]
+```
+
+## Reglas
+
+- `FooterMain` → layout horizontal (3 bloques)
+- `FormasDePago` → bloque independiente, ancho completo
+- `FooterBottom` → línea legal
+- `FooterDeveloper` → línea final separada
+
+# TABLET (768px – 1023px)
+
+```
+Footer
+
+[ FooterBrand ]
+
+[ FooterNav ]
+
+[ FooterContact ]
+
+[ FormasDePago ]
+
+----------------------------
+
+[ Copyright ]
+[ LegalLinks ]
+
+----------------------------
+
+[ Desarrollado por Insomne ]
+```
+
+---
+
+## Reglas
+
+- Todo pasa a **stack vertical**
+- Separación clara por bloques
+
+# MOBILE (<768px)
+
+```
+Footer
+
+[ Logo ]
+
+[ Links ]
+
+[ Contacto ]
+
+[ FormasDePago ]
+
+----------------------
+
+[ Legal ]
+
+----------------------
+
+[ Insomne ]
+```
+
+# DETALLE DE BLOQUES
+
+## FooterMain
+
+```
+FooterMain
+├── FooterBrand
+│   ├── Logo
+│   └── BrandDescription
+│
+├── FooterNav
+│   ├── NavGroup
+│   ├── NavGroup
+│   └── NavGroup
+│
+└── FooterContact
+    ├── Address
+    ├── Phone
+    └── Email
+```
+
+---
+
+## FormasDePago
+
+```
+FormasDePago
+├── PaymentTitle
+└── PaymentIcons
+```
+
+---
+
+## FooterBottom
+
+```
+FooterBottom
+├── Copyright
+└── LegalLinks
+```
+
+---
+
+## FooterDeveloper
+
+```
+FooterDeveloper
+└── DeveloperCredit (Insomne)
+```
+
+# REGLAS CLAVE
+
+## 1) `FormasDePago` siempre visible
+
+No ocultar ni colapsar.
+
+---
+
+## 2) `FooterDeveloper` minimal
+
+- Solo texto + link
+- No competir con contenido principal
+
+---
+
+## 3) No saturar FooterNav
+
+Máximo:
+
+- 3 grupos
+- 5–6 links por grupo
+
+---
+
+# RESULTADO FINAL
+
+- Desktop → 3 columnas + pagos destacado
+- Tablet → stack vertical
+- Mobile → stack simplificado
+- Línea final → `Insomne`

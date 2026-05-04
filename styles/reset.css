@@ -1,0 +1,725 @@
+/*
+ * ============================================================
+ * SONRISA PREMIUM MX — reset.css
+ * Reset CSS moderno unificado
+ *
+ * Enfoque: Modern CSS Reset + normalización cross-browser
+ * selectiva (incorpora lo relevante de normalize.css v8).
+ * Cero dependencias externas — control total del proyecto.
+ *
+ * Orden de bloques:
+ *   1. Box model
+ *   2. Documento y raíz
+ *   3. Tipografía base
+ *   4. Espaciado
+ *   5. Listas
+ *   6. Imágenes y media
+ *   7. Tablas
+ *   8. Formularios e interactivos
+ *   9. Accesibilidad
+ *  10. Utilidades de reset puntuales
+ *
+ * Autor: Insomne × Sonrisa Premium MX
+ * ============================================================
+ */
+
+/* ==========================================================
+   1. BOX MODEL
+   Cambia el modelo de caja globalmente a border-box.
+   El selector universal con pseudo-elementos garantiza que
+   ningún componente escape — incluyendo ::before / ::after
+   generados por librerías de terceros.
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================
+   2. DOCUMENTO Y RAÍZ
+   ========================================================== */
+
+html {
+  /*
+   * Previene ajuste automático de fuente en iOS al rotar
+   * pantalla (Safari). Normalize.css lo tenía en `body`,
+   * pero el lugar correcto es html para cascade correcta.
+   */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  /*
+   * Scroll suave para anclas en el documento.
+   * Desactivado si el usuario prefiere movimiento reducido
+   * (ver bloque de accesibilidad al final).
+   */
+  scroll-behavior: smooth;
+
+  /*
+   * Mejora el renderizado de fuentes en macOS/iOS.
+   * antialiased reduce el grosor visual — ideal para
+   * Playfair Display y Source Sans 3 en fondos claros.
+   */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+
+  /*
+   * Permite que el scroll horizontal no desborde
+   * cuando hay elementos fuera de flujo.
+   */
+  overflow-x: hidden;
+
+  /*
+   * Interlineado base del documento.
+   * Se sobreescribe por tokens en el body.
+   */
+  line-height: 1.15;
+
+  /*
+   * Evita el tap highlight azul en móviles al tocar
+   * elementos interactivos (iOS / Android Chrome).
+   */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh; /* svh: small viewport height — correcto en móvil */
+  font-family: var(--fuente-secundaria);
+  font-size: var(--texto-base);
+  font-weight: var(--peso-regular);
+  line-height: var(--linea-normal);
+  color: var(--color-texto-principal);
+  background-color: var(--color-fondo-pagina);
+
+  /*
+   * Mejora la fragmentación de texto en múltiples columnas
+   * y evita palabras cortadas incorrectamente.
+   */
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  /*
+   * Kerning y ligaduras tipográficas para Playfair Display
+   * y Source Sans 3. Mejora la calidad visual del texto.
+   */
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+  font-kerning: normal;
+}
+
+/* ==========================================================
+   3. TIPOGRAFÍA BASE
+   ========================================================== */
+
+/*
+ * Elimina márgenes por defecto de todos los encabezados.
+ * El espaciado se controla vía tokens en layout.css y
+ * componentes específicos — nunca con defaults del agente.
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: var(--linea-ajustada);
+
+  /*
+   * Equilibrado de líneas en títulos multilinea.
+   * Experimental pero con soporte creciente — no afecta
+   * si no es soportado (graceful degradation).
+   */
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+
+  /*
+   * text-wrap: pretty mejora el aspecto de los párrafos
+   * evitando palabras huérfanas al final de línea.
+   */
+  text-wrap: pretty;
+}
+
+/*
+ * Normalize: <b> y <strong> deben ser bold en todos los
+ * navegadores (Firefox aplicaba bolder relativo).
+ */
+b,
+strong {
+  font-weight: var(--peso-bold);
+}
+
+/*
+ * Normalize: <small> debe ser 80% del padre, no 100%.
+ */
+small {
+  font-size: 80%;
+}
+
+/*
+ * Normalize: previene que <sub> y <sup> afecten
+ * el interlineado de la línea contenedora.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+
+/*
+ * Normalize: <abbr> con atributo title muestra cursor
+ * de ayuda y decoración de subrayado consistente.
+ */
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/*
+ * Normalize: <code>, <kbd>, <samp>, <pre> usan
+ * fuente monospace consistente en todos los navegadores.
+ */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--fuente-codigo);
+  font-size: 1em;
+}
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+/*
+ * Normalize: <hr> consistente cross-browser.
+ * Redefinimos completamente para control total.
+ */
+hr {
+  height: var(--separador-ancho);
+  margin: 0;
+  border: none;
+  background-color: var(--separador-color);
+  color: var(--separador-color);
+  overflow: visible;
+}
+
+blockquote {
+  margin: 0;
+}
+
+/* Elimina estilos de texto de <address> */
+address {
+  font-style: normal;
+  line-height: inherit;
+}
+
+/* ==========================================================
+   4. ESPACIADO
+   Elimina márgenes/paddings por defecto del agente.
+   El espaciado se define siempre vía tokens y componentes.
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Excepción necesaria: dialog necesita su posicionamiento
+ * nativo para funcionar correctamente en todos los browsers.
+ */
+dialog {
+  margin: auto;
+  padding: 0;
+}
+
+/* ==========================================================
+   5. LISTAS
+   ========================================================== */
+
+/*
+ * Elimina estilos de lista (bullets, números, indentación)
+ * solo cuando la lista tiene role="list".
+ * Esto preserva la semántica accesible sin afectar listas
+ * de contenido que sí deben verse como listas (body copy).
+ *
+ * Técnica de Scott O'Hara — evita el bug de Safari/VoiceOver
+ * que remueve semántica de lista con list-style: none global.
+ */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================================================
+   6. IMÁGENES Y MEDIA
+   ========================================================== */
+
+/*
+ * Hace que todas las imágenes y media sean responsive
+ * por defecto (max-width: 100%, no overflow del contenedor).
+ * display: block elimina el espacio fantasma de inline.
+ */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+/*
+ * Normalize: <img> sin atributo alt muestra un borde
+ * en algunos browsers. Lo neutralizamos.
+ */
+img {
+  border-style: none;
+}
+
+/*
+ * SVG inline: previene que hereden el color de texto
+ * del padre de forma no intencionada.
+ * currentColor se aplica explícitamente donde se necesita.
+ */
+svg:not([fill]) {
+  fill: none;
+}
+
+/*
+ * Iframes (Google Maps, embeds): elimina borde legacy.
+ */
+iframe {
+  border: 0;
+}
+
+/* ==========================================================
+   7. TABLAS
+   ========================================================== */
+
+/*
+ * Normalize: colapsa bordes para evitar separación doble
+ * y hereda fuente del padre (browsers aplicaban su propia).
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption {
+  text-align: left;
+}
+
+th {
+  font-weight: var(--peso-semibold);
+  text-align: inherit;
+  text-align: -webkit-match-parent; /* Safari fallback */
+}
+
+td,
+th {
+  padding: 0;
+  vertical-align: top;
+}
+
+/* ==========================================================
+   8. FORMULARIOS E INTERACTIVOS
+   ========================================================== */
+
+/*
+ * Normalize: elementos de formulario heredan fuente
+ * del padre. Por defecto aplican la fuente del sistema,
+ * ignorando la cascade — este es uno de los bugs más
+ * comunes y el motivo principal de usar normalize.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Normalize: <button> e <input[type=button]> en iOS
+ * aplican -webkit-appearance que sobreescribe estilos.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+/*
+ * Normalize: Firefox agrega un outline extra en focus
+ * en botones — lo eliminamos (restauramos focus propio
+ * en components.css con --anillo-foco).
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/*
+ * Normalize: <fieldset> agrega min-width: min-content
+ * en Chrome que impide que el fieldset sea más estrecho
+ * que su contenido. Lo neutralizamos.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+legend {
+  display: table;
+  padding: 0;
+}
+
+/*
+ * Normalize: <textarea> en algunos browsers no respeta
+ * el ancho del contenedor. overflow: auto es necesario en IE.
+ */
+textarea {
+  overflow: auto;
+  resize: vertical;
+  max-width: 100%;
+}
+
+/*
+ * Normalize: <select> y <input[type="number"]> muestran
+ * controles del agente que podemos neutralizar.
+ */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/*
+ * Normalize: <input[type="search"]> aplica box-sizing
+ * diferente en Chrome/Safari — normalizamos a border-box.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+ * Normalize: <input[type="number"]> — oculta las flechas
+ * nativas del browser cuando no son necesarias.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+ * Normalize: <file> upload button hereda fuente en WebKit.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+/*
+ * Normalize: <progress> en IE10+ — display: inline-block
+ * previene que aparezca como display: inline.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/*
+ * <details> y <summary> — comportamiento consistente
+ * en todos los browsers modernos.
+ */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*
+ * <dialog> — elimina el borde y backdrop default del
+ * agente para control total desde components.css.
+ */
+dialog {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+dialog::backdrop {
+  background: var(--overlay-modal);
+}
+
+/*
+ * Cursor pointer en todos los elementos interactivos
+ * con role="button" explícito (divs clickeables).
+ */
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+ * Elementos deshabilitados — cursor y opacidad
+ * consistentes en todos los contextos.
+ */
+[disabled],
+[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ==========================================================
+   9. ACCESIBILIDAD
+   ========================================================== */
+
+/*
+ * Clase utilitaria para contenido accesible solo por
+ * lectores de pantalla (skip links, labels ocultos).
+ * Técnica más robusta que display:none o visibility:hidden
+ * que sí ocultan el contenido del árbol de accesibilidad.
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+ * Versión que se vuelve visible al recibir focus
+ * (patrón "skip to content" para navegación por teclado).
+ */
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/*
+ * Skip link — permite a usuarios de teclado/lector de
+ * pantalla saltar el navbar y llegar al contenido principal.
+ */
+.skip-link {
+  position: absolute;
+  top: var(--espacio-4);
+  left: var(--espacio-4);
+  z-index: var(--z-tooltip);
+  padding: var(--espacio-3) var(--espacio-6);
+  background-color: var(--color-secundario);
+  color: var(--color-texto-en-secundario);
+  font-weight: var(--peso-semibold);
+  border-radius: var(--radio-md);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--duracion-normal) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/*
+ * Focus visible — restauramos outline accesible solo para
+ * navegación por teclado (no para mouse/touch).
+ * Usa :focus-visible para distinguir origen de interacción.
+ */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secundario);
+  outline-offset: 3px;
+  border-radius: var(--radio-sm);
+}
+
+/*
+ * Normalize: elementos con tabindex="-1" no deben mostrar
+ * outline (son programáticamente focusables, no por teclado).
+ */
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/*
+ * Reduce movimiento — respeta prefers-reduced-motion.
+ * scroll-behavior: auto cancela el scroll suave declarado
+ * en html para usuarios con sensibilidad al movimiento.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================
+   10. UTILIDADES DE RESET PUNTUALES
+   Pequeñas normalizaciones que no encajan en las categorías
+   anteriores pero son necesarias para el proyecto.
+   ========================================================== */
+
+/*
+ * Normalize: <template> no debe renderizarse.
+ * Algunos browsers antiguos lo mostraban como inline.
+ */
+template,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * <a> — elimina el subrayado por defecto y aplica
+ * color heredado. Los estilos de enlace se aplican
+ * por componente para máximo control.
+ */
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent; /* Normalize: IE10 fix */
+}
+
+/*
+ * Imágenes dentro de <a> no deben tener borde en IE.
+ * (Normalize legacy — mantener por precaución.)
+ */
+a img {
+  border: none;
+}
+
+/*
+ * Normalize: <mark> — color de fondo consistente en
+ * todos los browsers (algunos no aplican ninguno).
+ */
+mark {
+  background-color: var(--color-advertencia-claro);
+  color: var(--color-advertencia-texto);
+  padding: 0 var(--espacio-0-5);
+}
+
+/*
+ * Normalize: <del> e <ins> consistentes.
+ */
+del {
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+ins {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/*
+ * Normalize: <figure> — elimina margen aplicado por
+ * algunos agentes de usuario.
+ */
+figure {
+  margin: 0;
+}
+
+/*
+ * Variables de scroll para compensar la altura del navbar
+ * sticky al hacer scroll a un anchor (#seccion).
+ * Se usa con scroll-margin-top en secciones.
+ */
+:target {
+  scroll-margin-top: calc(var(--navbar-height) + var(--espacio-4));
+}
+
+/*
+ * Selección de texto — color de marca.
+ */
+::selection {
+  background-color: var(--color-secundario-suave);
+  color: var(--color-texto-principal);
+}
+
+::-moz-selection {
+  background-color: var(--color-secundario-suave);
+  color: var(--color-texto-principal);
+}

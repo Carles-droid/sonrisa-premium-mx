@@ -1,0 +1,742 @@
+/*
+ * ============================================================
+ * SONRISA PREMIUM MX — tokens.css
+ * Design Tokens: Custom Properties (CSS Variables)
+ * Sistema visual: "Oro Suave & Pizarra"
+ *
+ * Arquitectura de tokens por capas:
+ *   Layer 0 → Primitivos     (valores brutos, nunca usados directo en UI)
+ *   Layer 1 → Semánticos     (intención: --color-texto, --color-superficie)
+ *   Layer 2 → Componentes    (uso concreto: --btn-bg, --navbar-height)
+ *
+ * Convención de nombres: kebab-case en español
+ * Autor: Insomne × Sonrisa Premium MX
+ * ============================================================
+ */
+
+:root {
+  /* ==========================================================
+     LAYER 0 — PRIMITIVOS DE COLOR
+     Escala completa por ramp. No usar directamente en CSS de
+     componentes — referenciar siempre a través de semánticos.
+     ========================================================== */
+
+  /* ── Primario: Pizarra ── */
+  --primitivo-pizarra-50: #edf0f3;
+  --primitivo-pizarra-100: #d3dae2;
+  --primitivo-pizarra-200: #b0bcc9;
+  --primitivo-pizarra-300: #8a9aab;
+  --primitivo-pizarra-400: #637888;
+  --primitivo-pizarra-500: #4a5f72;
+  --primitivo-pizarra-600: #354d60;
+  --primitivo-pizarra-700: #2c3e50; /* ← base */
+  --primitivo-pizarra-800: #1a2534; /* ← oscuro */
+  --primitivo-pizarra-900: #0e1720;
+
+  /* ── Secundario: Oro ── */
+  --primitivo-oro-50: #fbf5e6;
+  --primitivo-oro-100: #f5e9c4;
+  --primitivo-oro-200: #edd68a;
+  --primitivo-oro-300: #dfc063;
+  --primitivo-oro-400: #c9a84c; /* ← base */
+  --primitivo-oro-500: #b28f35;
+  --primitivo-oro-600: #97761f;
+  --primitivo-oro-700: #7a5e10;
+  --primitivo-oro-800: #5d4608;
+  --primitivo-oro-900: #3d2d02;
+
+  /* ── Acento: Terracota cálida ── */
+  --primitivo-acento-50: #fbf0ec;
+  --primitivo-acento-100: #f5d5c7;
+  --primitivo-acento-200: #edb59d;
+  --primitivo-acento-300: #e8a87c; /* ← base */
+  --primitivo-acento-400: #dc8f5e;
+  --primitivo-acento-500: #c97543;
+  --primitivo-acento-600: #a85c2c;
+  --primitivo-acento-700: #87451b;
+  --primitivo-acento-800: #5f2f0e;
+  --primitivo-acento-900: #3a1c06;
+
+  /* ── Neutros cálidos ── */
+  --primitivo-neutro-0: #ffffff;
+  --primitivo-neutro-50: #fafaf9; /* marfil */
+  --primitivo-neutro-100: #f5f2ee;
+  --primitivo-neutro-150: #f0ede8; /* crema */
+  --primitivo-neutro-200: #e8e3dc;
+  --primitivo-neutro-300: #d6d0c7; /* arena */
+  --primitivo-neutro-400: #bdb5a8;
+  --primitivo-neutro-500: #9e9488;
+  --primitivo-neutro-600: #8b8179;
+  --primitivo-neutro-700: #6b6259;
+  --primitivo-neutro-800: #48403a;
+  --primitivo-neutro-850: #2c2824; /* grafito */
+  --primitivo-neutro-900: #1a1612;
+  --primitivo-neutro-950: #0d0b09;
+
+  /* ── Éxito / Success ── */
+  --primitivo-exito-50: #edf7f1;
+  --primitivo-exito-100: #c3e6d0;
+  --primitivo-exito-300: #4db882;
+  --primitivo-exito-500: #2d9d78; /* base */
+  --primitivo-exito-700: #1a7558;
+  --primitivo-exito-900: #0c4d39;
+
+  /* ── Advertencia / Warning ── */
+  --primitivo-advertencia-50: #fdf6e3;
+  --primitivo-advertencia-100: #f9e4a8;
+  --primitivo-advertencia-300: #f0cb5a;
+  --primitivo-advertencia-500: #e9b947; /* base */
+  --primitivo-advertencia-700: #c49020;
+  --primitivo-advertencia-900: #7a5608;
+
+  /* ── Error / Danger ── */
+  --primitivo-error-50: #fbeaea;
+  --primitivo-error-100: #f4bebe;
+  --primitivo-error-300: #e57373;
+  --primitivo-error-500: #d9534f; /* base */
+  --primitivo-error-700: #a02020;
+  --primitivo-error-900: #620f0f;
+
+  /* ── Info / Informativo ── */
+  --primitivo-info-50: #e8eff8;
+  --primitivo-info-100: #bdd2ed;
+  --primitivo-info-300: #6aaad6;
+  --primitivo-info-500: #2e7bc4;
+  --primitivo-info-700: #1a5691;
+  --primitivo-info-900: #0c3360;
+
+  /* ==========================================================
+     LAYER 1 — SEMÁNTICOS DE COLOR
+     Aquí se conectan primitivos con intención UI.
+     Estos sí se usan directamente en componentes.
+     ========================================================== */
+
+  /* ── Marca principal ── */
+  --color-primario-claro: var(--primitivo-pizarra-50);
+  --color-primario: var(--primitivo-pizarra-700);
+  --color-primario-oscuro: var(--primitivo-pizarra-800);
+  --color-primario-profundo: var(--primitivo-pizarra-900);
+
+  /* ── Marca secundaria (oro) ── */
+  --color-secundario-claro: var(--primitivo-oro-50);
+  --color-secundario-suave: var(--primitivo-oro-200);
+  --color-secundario: var(--primitivo-oro-400);
+  --color-secundario-oscuro: var(--primitivo-oro-600);
+
+  /* ── Acento (terracota) ── */
+  --color-acento-suave: var(--primitivo-acento-100);
+  --color-acento: var(--primitivo-acento-300);
+  --color-acento-oscuro: var(--primitivo-acento-500);
+
+  /* ── Superficies / Fondos ── */
+  --color-fondo-pagina: var(--primitivo-neutro-150);
+  --color-fondo-primario: var(--primitivo-neutro-0);
+  --color-fondo-secundario: var(--primitivo-neutro-50);
+  --color-fondo-terciario: var(--primitivo-neutro-100);
+  --color-superficie: var(--primitivo-neutro-150);
+  --color-superficie-elevada: var(--primitivo-neutro-0);
+  --color-superficie-alt: var(--primitivo-pizarra-50);
+
+  /* ── Texto ── */
+  --color-texto-principal: var(--primitivo-neutro-850);
+  --color-texto-secundario: var(--primitivo-neutro-600);
+  --color-texto-terciario: var(--primitivo-neutro-500);
+  --color-texto-deshabilitado: var(--primitivo-neutro-400);
+  --color-texto-invertido: var(--primitivo-neutro-0);
+  --color-texto-en-primario: var(--primitivo-neutro-0);
+  --color-texto-en-secundario: var(--primitivo-neutro-850);
+  --color-texto-en-acento: var(--primitivo-neutro-0);
+
+  /* ── Bordes ── */
+  --color-borde-suave: var(--primitivo-neutro-300);
+  --color-borde: var(--primitivo-neutro-300);
+  --color-borde-enfasis: var(--primitivo-neutro-400);
+  --color-borde-primario: var(--primitivo-pizarra-700);
+  --color-borde-secundario: var(--primitivo-oro-400);
+
+  /* ── Estados semánticos ── */
+  --color-exito: var(--primitivo-exito-500);
+  --color-exito-claro: var(--primitivo-exito-50);
+  --color-exito-texto: var(--primitivo-exito-700);
+
+  --color-advertencia: var(--primitivo-advertencia-500);
+  --color-advertencia-claro: var(--primitivo-advertencia-50);
+  --color-advertencia-texto: var(--primitivo-advertencia-700);
+
+  --color-error: var(--primitivo-error-500);
+  --color-error-claro: var(--primitivo-error-50);
+  --color-error-texto: var(--primitivo-error-700);
+
+  --color-info: var(--primitivo-info-500);
+  --color-info-claro: var(--primitivo-info-50);
+  --color-info-texto: var(--primitivo-info-700);
+
+  /* ==========================================================
+     OVERLAYS
+     Capas semitransparentes con intención específica.
+     Formato: rgba / color-mix para máxima flexibilidad.
+     ========================================================== */
+
+  /* ── Overlays sobre imágenes (hero, sliders, cards con foto) ── */
+  --overlay-hero-ligero: rgba(26, 37, 52, 0.35);
+  --overlay-hero-medio: rgba(26, 37, 52, 0.55);
+  --overlay-hero-fuerte: rgba(26, 37, 52, 0.72);
+  --overlay-hero-profundo: rgba(14, 23, 32, 0.85);
+
+  /* ── Overlays dorados (para slides de impacto / CTA sobre imagen) ── */
+  --overlay-oro-suave: rgba(201, 168, 76, 0.12);
+  --overlay-oro-medio: rgba(201, 168, 76, 0.25);
+
+  /* ── Overlays de UI (modales, drawers, tooltips) ── */
+  --overlay-modal: rgba(14, 23, 32, 0.6);
+  --overlay-modal-fuerte: rgba(14, 23, 32, 0.8);
+  --overlay-dropdown: rgba(26, 37, 52, 0.08);
+  --overlay-hover-claro: rgba(26, 37, 52, 0.04);
+  --overlay-hover-medio: rgba(26, 37, 52, 0.08);
+  --overlay-activo: rgba(26, 37, 52, 0.12);
+
+  /* ── Overlays sobre fondos claros ── */
+  --overlay-blanco-suave: rgba(255, 255, 255, 0.1);
+  --overlay-blanco-medio: rgba(255, 255, 255, 0.25);
+  --overlay-blanco-fuerte: rgba(255, 255, 255, 0.55);
+
+  /* ── Sombras proyectadas por color de marca ── */
+  --overlay-sombra-primario: rgba(44, 62, 80, 0.18);
+  --overlay-sombra-secundario: rgba(201, 168, 76, 0.22);
+  --overlay-sombra-acento: rgba(232, 168, 124, 0.2);
+
+  /* ==========================================================
+     GRADIENTES
+     Siempre con dirección + paradas explícitas.
+     No usar en elementos de texto por legibilidad.
+     ========================================================== */
+
+  /* ── Gradientes de marca: Pizarra ── */
+  --gradiente-primario: linear-gradient(
+    135deg,
+    var(--primitivo-pizarra-600) 0%,
+    var(--primitivo-pizarra-800) 100%
+  );
+
+  --gradiente-primario-vertical: linear-gradient(
+    180deg,
+    var(--primitivo-pizarra-700) 0%,
+    var(--primitivo-pizarra-900) 100%
+  );
+
+  --gradiente-primario-radial: radial-gradient(
+    ellipse at 30% 40%,
+    var(--primitivo-pizarra-600) 0%,
+    var(--primitivo-pizarra-900) 70%
+  );
+
+  /* ── Gradientes de marca: Oro ── */
+  --gradiente-secundario: linear-gradient(
+    135deg,
+    var(--primitivo-oro-300) 0%,
+    var(--primitivo-oro-500) 100%
+  );
+
+  --gradiente-secundario-suave: linear-gradient(
+    120deg,
+    var(--primitivo-oro-100) 0%,
+    var(--primitivo-oro-200) 100%
+  );
+
+  /* ── Gradiente combinado Pizarra + Oro (hero, banners premium) ── */
+  --gradiente-premium: linear-gradient(
+    135deg,
+    var(--primitivo-pizarra-800) 0%,
+    var(--primitivo-pizarra-700) 45%,
+    var(--primitivo-oro-700) 100%
+  );
+
+  --gradiente-premium-sutil: linear-gradient(
+    160deg,
+    var(--primitivo-pizarra-50) 0%,
+    var(--primitivo-oro-50) 100%
+  );
+
+  /* ── Gradientes de acento (CTAs, badges, highlights) ── */
+  --gradiente-acento: linear-gradient(
+    135deg,
+    var(--primitivo-acento-200) 0%,
+    var(--primitivo-acento-400) 100%
+  );
+
+  /* ── Gradientes de superficie (fondos de sección, cards) ── */
+  --gradiente-superficie: linear-gradient(
+    180deg,
+    var(--primitivo-neutro-0) 0%,
+    var(--primitivo-neutro-150) 100%
+  );
+
+  --gradiente-superficie-invertido: linear-gradient(
+    180deg,
+    var(--primitivo-neutro-150) 0%,
+    var(--primitivo-neutro-0) 100%
+  );
+
+  /* ── Gradientes de texto (uso muy limitado: solo en headlines de hero) ── */
+  --gradiente-texto-oro: linear-gradient(
+    120deg,
+    var(--primitivo-oro-300) 0%,
+    var(--primitivo-oro-500) 50%,
+    var(--primitivo-oro-200) 100%
+  );
+
+  /* ── Gradiente para shape dividers ── */
+  --gradiente-divider-claro: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--color-superficie) 100%
+  );
+
+  /* ── Gradiente scrim (para texto sobre imagen sin overlay sólido) ── */
+  --gradiente-scrim-inferior: linear-gradient(
+    to top,
+    rgba(14, 23, 32, 0.8) 0%,
+    rgba(14, 23, 32, 0.4) 40%,
+    transparent 100%
+  );
+
+  --gradiente-scrim-superior: linear-gradient(
+    to bottom,
+    rgba(14, 23, 32, 0.65) 0%,
+    transparent 100%
+  );
+
+  /* ==========================================================
+     TIPOGRAFÍA
+     ========================================================== */
+
+  /* ── Familias ── */
+  --fuente-principal: "Playfair Display", Georgia, "Times New Roman", serif;
+  --fuente-secundaria: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  --fuente-codigo: "Fira Code", "Courier New", Courier, monospace;
+
+  /* ── Escala de tamaños (modular scale 1.25 — Major Third) ── */
+  --texto-xs: 0.64rem; /*  ~10px */
+  --texto-sm: 0.8rem; /*  ~13px */
+  --texto-base: 1rem; /*   16px */
+  --texto-md: 1.125rem; /*   18px */
+  --texto-lg: 1.25rem; /*   20px */
+  --texto-xl: 1.563rem; /*   25px */
+  --texto-2xl: 1.953rem; /*   31px */
+  --texto-3xl: 2.441rem; /*   39px */
+  --texto-4xl: 3.052rem; /*   49px */
+  --texto-5xl: 3.815rem; /*   61px */
+
+  /* ── Pesos ── */
+  --peso-regular: 400;
+  --peso-medio: 500;
+  --peso-semibold: 600;
+  --peso-bold: 700;
+
+  /* ── Interlineado ── */
+  --linea-ajustada: 1.15;
+  --linea-compacta: 1.35;
+  --linea-normal: 1.5;
+  --linea-relajada: 1.7;
+  --linea-amplia: 1.9;
+
+  /* ── Espaciado entre letras ── */
+  --tracking-negativo: -0.03em;
+  --tracking-ajustado: -0.01em;
+  --tracking-normal: 0;
+  --tracking-ancho: 0.03em;
+  --tracking-extraancho: 0.08em;
+  --tracking-mayusculas: 0.12em;
+
+  /* ── Jerarquía de encabezados ── */
+  --h1-size: var(--texto-4xl);
+  --h1-weight: var(--peso-bold);
+  --h1-line-height: var(--linea-ajustada);
+  --h1-tracking: var(--tracking-negativo);
+  --h1-font: var(--fuente-principal);
+
+  --h2-size: var(--texto-3xl);
+  --h2-weight: var(--peso-bold);
+  --h2-line-height: var(--linea-compacta);
+  --h2-tracking: var(--tracking-ajustado);
+  --h2-font: var(--fuente-principal);
+
+  --h3-size: var(--texto-2xl);
+  --h3-weight: var(--peso-semibold);
+  --h3-line-height: var(--linea-compacta);
+  --h3-font: var(--fuente-principal);
+
+  --h4-size: var(--texto-xl);
+  --h4-weight: var(--peso-semibold);
+  --h4-line-height: var(--linea-normal);
+  --h4-font: var(--fuente-secundaria);
+
+  --h5-size: var(--texto-lg);
+  --h5-weight: var(--peso-medio);
+  --h5-line-height: var(--linea-normal);
+  --h5-font: var(--fuente-secundaria);
+
+  --h6-size: var(--texto-base);
+  --h6-weight: var(--peso-semibold);
+  --h6-line-height: var(--linea-normal);
+  --h6-font: var(--fuente-secundaria);
+
+  /* ── Hero específico ── */
+  --hero-headline-size: clamp(2.2rem, 5.5vw, var(--texto-5xl));
+  --hero-subheadline-size: clamp(1rem, 2vw, var(--texto-lg));
+  --hero-headline-line-height: var(--linea-ajustada);
+
+  /* ==========================================================
+     ESPACIADO
+     Base 4px, escala por múltiplos limpios.
+     ========================================================== */
+
+  --espacio-0: 0;
+  --espacio-px: 1px;
+  --espacio-0-5: 0.125rem; /*   2px */
+  --espacio-1: 0.25rem; /*   4px */
+  --espacio-1-5: 0.375rem; /*   6px */
+  --espacio-2: 0.5rem; /*   8px */
+  --espacio-2-5: 0.625rem; /*  10px */
+  --espacio-3: 0.75rem; /*  12px */
+  --espacio-4: 1rem; /*  16px */
+  --espacio-5: 1.25rem; /*  20px */
+  --espacio-6: 1.5rem; /*  24px */
+  --espacio-8: 2rem; /*  32px */
+  --espacio-10: 2.5rem; /*  40px */
+  --espacio-12: 3rem; /*  48px */
+  --espacio-14: 3.5rem; /*  56px */
+  --espacio-16: 4rem; /*  64px */
+  --espacio-20: 5rem; /*  80px */
+  --espacio-24: 6rem; /*  96px */
+  --espacio-28: 7rem; /* 112px */
+  --espacio-32: 8rem; /* 128px */
+
+  /* ── Espaciado semántico de secciones ── */
+  --seccion-padding-y: var(--espacio-20);
+  --seccion-padding-y-grande: var(--espacio-24);
+  --seccion-padding-y-pequeno: var(--espacio-12);
+  --seccion-gap-interna: var(--espacio-12);
+
+  /* ── Espaciado de contenedor ── */
+  --contenedor-padding-x: var(--espacio-6);
+  --contenedor-padding-x-tablet: var(--espacio-8);
+  --contenedor-padding-x-desktop: var(--espacio-12);
+
+  /* ==========================================================
+     TAMAÑOS Y LAYOUT
+     ========================================================== */
+
+  /* ── Contenedor máximo ── */
+  --contenedor-max: 1280px;
+  --contenedor-max-angosto: 780px;
+  --contenedor-max-medio: 1024px;
+
+  /* ── Navbar ── */
+  --navbar-height: 72px;
+  --navbar-height-mobile: 64px;
+  --navbar-height-reducida: 60px;
+  --navbar-z-index: 100;
+  --navbar-logo-max-h: 44px;
+  --navbar-dropdown-min-w: 200px;
+
+  /* ── Hero ── */
+  --hero-height: 100svh;
+  --hero-height-min: 600px;
+  --hero-contenido-max-w: 720px;
+
+  /* ── Cards ── */
+  --card-padding: var(--espacio-6);
+  --card-padding-sm: var(--espacio-4);
+  --card-img-aspect-ratio-cuadrado: 1 / 1;
+  --card-img-aspect-ratio-retrato: 3 / 4;
+  --card-img-aspect-ratio-paisaje: 4 / 3;
+
+  /* ── Grid gaps ── */
+  --grid-gap-sm: var(--espacio-4);
+  --grid-gap: var(--espacio-6);
+  --grid-gap-lg: var(--espacio-8);
+
+  /* ==========================================================
+     BORDES Y RADIOS
+     ========================================================== */
+
+  --radio-sm: 4px;
+  --radio-md: 8px;
+  --radio-lg: 12px;
+  --radio-xl: 16px;
+  --radio-2xl: 24px;
+  --radio-3xl: 32px;
+  --radio-pill: 999px;
+  --radio-circulo: 50%;
+
+  --borde-ancho: 1px;
+  --borde-ancho-md: 1.5px;
+  --borde-ancho-lg: 2px;
+  --borde-estilo: solid;
+  --borde: var(--borde-ancho) var(--borde-estilo) var(--color-borde-suave);
+  --borde-enfasis: var(--borde-ancho) var(--borde-estilo)
+    var(--color-borde-enfasis);
+  --borde-primario: var(--borde-ancho) var(--borde-estilo) var(--color-primario);
+  --borde-secundario: var(--borde-ancho) var(--borde-estilo)
+    var(--color-secundario);
+
+  /* ==========================================================
+     SOMBRAS
+     ========================================================== */
+
+  /* ── Elevación de superficie ── */
+  --sombra-xs: 0 1px 2px 0 var(--overlay-sombra-primario);
+
+  --sombra-sm:
+    0 1px 3px 0 var(--overlay-sombra-primario),
+    0 1px 2px -1px var(--overlay-sombra-primario);
+
+  --sombra-md:
+    0 4px 6px -1px var(--overlay-sombra-primario),
+    0 2px 4px -2px var(--overlay-sombra-primario);
+
+  --sombra-lg:
+    0 10px 15px -3px var(--overlay-sombra-primario),
+    0 4px 6px -4px var(--overlay-sombra-primario);
+
+  --sombra-xl:
+    0 20px 25px -5px var(--overlay-sombra-primario),
+    0 8px 10px -6px var(--overlay-sombra-primario);
+
+  --sombra-2xl: 0 25px 50px -12px var(--overlay-sombra-primario);
+
+  /* ── Sombras de color de marca ── */
+  --sombra-primario: 0 8px 24px -4px var(--overlay-sombra-primario);
+
+  --sombra-secundario: 0 8px 24px -4px var(--overlay-sombra-secundario);
+
+  --sombra-acento: 0 8px 24px -4px var(--overlay-sombra-acento);
+
+  /* ── Sombra interna ── */
+  --sombra-interna: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  --sombra-interna-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+
+  /* ── Focus ring (accesibilidad) ── */
+  --anillo-foco: 0 0 0 3px rgba(201, 168, 76, 0.45);
+
+  --anillo-foco-primario:
+    0 0 0 2px var(--primitivo-neutro-0), 0 0 0 4px var(--color-primario);
+
+  --anillo-foco-secundario:
+    0 0 0 2px var(--primitivo-neutro-0), 0 0 0 4px var(--color-secundario);
+
+  /* ==========================================================
+     TRANSICIONES Y ANIMACIONES
+     ========================================================== */
+
+  /* ── Duraciones ── */
+  --duracion-instantanea: 75ms;
+  --duracion-rapida: 150ms;
+  --duracion-normal: 250ms;
+  --duracion-lenta: 350ms;
+  --duracion-muy-lenta: 500ms;
+  --duracion-slider: 600ms;
+
+  /* ── Easing functions ── */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-suave: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* ── Transiciones precompuestas ── */
+  --transicion-colores:
+    color var(--duracion-rapida) var(--ease-in-out),
+    background-color var(--duracion-rapida) var(--ease-in-out),
+    border-color var(--duracion-rapida) var(--ease-in-out),
+    fill var(--duracion-rapida) var(--ease-in-out),
+    stroke var(--duracion-rapida) var(--ease-in-out);
+
+  --transicion-sombra: box-shadow var(--duracion-normal) var(--ease-in-out);
+
+  --transicion-transformacion: transform var(--duracion-normal)
+    var(--ease-suave);
+
+  --transicion-opacidad: opacity var(--duracion-normal) var(--ease-in-out);
+
+  --transicion-todas:
+    var(--transicion-colores), var(--transicion-sombra),
+    var(--transicion-transformacion);
+
+  --transicion-dropdown:
+    opacity var(--duracion-rapida) var(--ease-out),
+    transform var(--duracion-rapida) var(--ease-out), visibility 0ms;
+
+  /* ==========================================================
+     Z-INDEX — Stack de capas
+     ========================================================== */
+
+  --z-fondo: -10;
+  --z-base: 0;
+  --z-elevado: 10;
+  --z-sticky: 50;
+  --z-dropdown: 200;
+  --z-navbar: 300; /* = --navbar-z-index */
+  --z-overlay: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+  --z-flotante: 800; /* WhatsApp button */
+
+  /* ==========================================================
+     BREAKPOINTS (referencia — usar en @media con valores fijos)
+     Estas variables no se pueden usar en @media queries pero
+     documentan el sistema de breakpoints del proyecto.
+     ========================================================== */
+
+  --bp-mobile: 0px; /* < 768px  → mobile first */
+  --bp-tablet: 768px; /* ≥ 768px  → tablet */
+  --bp-desktop: 1024px; /* ≥ 1024px → desktop */
+  --bp-desktop-lg: 1280px; /* ≥ 1280px → desktop grande */
+  --bp-desktop-xl: 1440px; /* ≥ 1440px → pantallas anchas */
+
+  /* ==========================================================
+     LAYER 2 — TOKENS DE COMPONENTES
+     Variables específicas para componentes concretos.
+     Referencian tokens semánticos — nunca primitivos directos.
+     ========================================================== */
+
+  /* ── Navbar ── */
+  --navbar-bg: var(--color-fondo-primario);
+  --navbar-bg-scrolled: var(--color-fondo-primario);
+  --navbar-borde-inferior: var(--borde);
+  --navbar-sombra-scrolled: var(--sombra-sm);
+  --navbar-link-color: var(--color-texto-secundario);
+  --navbar-link-color-hover: var(--color-primario);
+  --navbar-link-color-activo: var(--color-primario);
+  --navbar-cta-bg: var(--color-secundario);
+  --navbar-cta-bg-hover: var(--color-secundario-oscuro);
+  --navbar-cta-color: var(--color-texto-en-secundario);
+
+  /* ── Botones ── */
+  --btn-radio: var(--radio-sm);
+  --btn-padding-x: var(--espacio-6);
+  --btn-padding-y: var(--espacio-3);
+  --btn-padding-x-sm: var(--espacio-4);
+  --btn-padding-y-sm: var(--espacio-2);
+  --btn-texto-size: var(--texto-base);
+  --btn-texto-weight: var(--peso-semibold);
+  --btn-tracking: var(--tracking-ancho);
+  --btn-transicion: var(--transicion-todas);
+
+  --btn-primario-bg: var(--color-primario);
+  --btn-primario-bg-hover: var(--color-primario-oscuro);
+  --btn-primario-color: var(--color-texto-en-primario);
+  --btn-primario-sombra: var(--sombra-primario);
+
+  --btn-secundario-bg: var(--color-secundario);
+  --btn-secundario-bg-hover: var(--color-secundario-oscuro);
+  --btn-secundario-color: var(--color-texto-en-secundario);
+  --btn-secundario-sombra: var(--sombra-secundario);
+
+  --btn-outline-bg: transparent;
+  --btn-outline-borde: var(--borde-primario);
+  --btn-outline-color: var(--color-primario);
+  --btn-outline-bg-hover: var(--color-primario);
+  --btn-outline-color-hover: var(--color-texto-en-primario);
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-color: var(--color-texto-invertido);
+  --btn-ghost-borde: 1px solid rgba(255, 255, 255, 0.55);
+  --btn-ghost-bg-hover: var(--overlay-blanco-medio);
+
+  /* ── Cards ── */
+  --card-bg: var(--color-fondo-primario);
+  --card-bg-hover: var(--color-fondo-secundario);
+  --card-borde: var(--borde);
+  --card-borde-hover: var(--borde-enfasis);
+  --card-radio: var(--radio-lg);
+  --card-sombra: var(--sombra-sm);
+  --card-sombra-hover: var(--sombra-md);
+
+  /* ── Formularios ── */
+  --input-bg: var(--color-fondo-primario);
+  --input-bg-focus: var(--color-fondo-primario);
+  --input-borde: var(--borde);
+  --input-borde-focus: var(--borde-secundario);
+  --input-radio: var(--radio-sm);
+  --input-padding-x: var(--espacio-4);
+  --input-padding-y: var(--espacio-3);
+  --input-color: var(--color-texto-principal);
+  --input-placeholder-color: var(--color-texto-terciario);
+  --input-sombra-focus: var(--anillo-foco);
+
+  /* ── Footer ── */
+  --footer-bg: var(--color-primario-oscuro);
+  --footer-color: var(--primitivo-neutro-300);
+  --footer-titulo-color: var(--primitivo-neutro-0);
+  --footer-link-color: var(--primitivo-neutro-400);
+  --footer-link-color-hover: var(--color-secundario);
+  --footer-borde-color: var(--primitivo-pizarra-600);
+  --footer-developer-color: var(--primitivo-neutro-500);
+
+  /* ── Slider / Hero ── */
+  --slider-dot-color: rgba(255, 255, 255, 0.45);
+  --slider-dot-color-activo: var(--color-secundario);
+  --slider-btn-bg: var(--overlay-blanco-suave);
+  --slider-btn-bg-hover: var(--overlay-blanco-medio);
+  --slider-btn-color: var(--primitivo-neutro-0);
+  --slider-btn-radio: var(--radio-pill);
+
+  /* ── WhatsApp button ── */
+  --wa-bg: #25d366;
+  --wa-bg-hover: #1ebe57;
+  --wa-color: var(--primitivo-neutro-0);
+  --wa-sombra: 0 4px 16px rgba(37, 211, 102, 0.35);
+  --wa-sombra-hover: 0 8px 24px rgba(37, 211, 102, 0.45);
+  --wa-size: 56px;
+  --wa-radio: var(--radio-pill);
+
+  /* ── Dropdown ── */
+  --dropdown-bg: var(--color-fondo-primario);
+  --dropdown-sombra: var(--sombra-lg);
+  --dropdown-borde: var(--borde);
+  --dropdown-radio: var(--radio-md);
+  --dropdown-item-bg-hover: var(--color-fondo-terciario);
+  --dropdown-item-color-hover: var(--color-primario);
+
+  /* ── Shape dividers ── */
+  --shape-color-primario: var(--color-superficie);
+  --shape-color-secundario: var(--color-superficie-alt);
+
+  /* ── Badges / Pills ── */
+  --badge-radio: var(--radio-pill);
+  --badge-padding-x: var(--espacio-3);
+  --badge-padding-y: var(--espacio-0-5);
+  --badge-texto-size: var(--texto-sm);
+  --badge-texto-weight: var(--peso-medio);
+
+  /* ── Separadores ── */
+  --separador-color: var(--color-borde-suave);
+  --separador-ancho: 1px;
+
+  /* ── Tooltips ── */
+  --tooltip-bg: var(--color-primario-profundo);
+  --tooltip-color: var(--primitivo-neutro-0);
+  --tooltip-radio: var(--radio-sm);
+  --tooltip-padding-x: var(--espacio-3);
+  --tooltip-padding-y: var(--espacio-1-5);
+  --tooltip-texto-size: var(--texto-sm);
+}
+
+/* ==========================================================
+   UTILIDADES DE ACCESIBILIDAD
+   Reducción de movimiento — respeta preferencias del sistema.
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duracion-rapida: 0ms;
+    --duracion-normal: 0ms;
+    --duracion-lenta: 0ms;
+    --duracion-muy-lenta: 0ms;
+    --duracion-slider: 0ms;
+  }
+}
