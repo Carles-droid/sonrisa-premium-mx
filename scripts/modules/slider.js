@@ -580,7 +580,7 @@ export function initSlider() {
 
     // Estado mutable del slider
     estado: {
-      indiceActual: 0, // slide actualmente visible
+      indiceActual: 0, // slide actualmente visibgitle
       esPorUsuario: false, // si el último cambio fue del usuario
       intervaloId: null, // referencia al setInterval del autoplay
       pausas: new Set(), // conjunto de motivos de pausa activos
