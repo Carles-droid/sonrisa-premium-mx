@@ -291,12 +291,6 @@
   z-index: var(--z-navbar);
   width: 100%;
   height: var(--navbar-height-mobile);
-
-  /*
-   * Hace que el navbar no colapse su contenido cuando
-   * tiene elementos absolutos internos.
-   */
-  contain: layout style;
 }
 
 @media (min-width: 1024px) {
@@ -401,20 +395,13 @@
 }
 
 /* ── Submenu: posicionamiento ── */
+
 .navbar__submenu {
-  display: none;
   position: absolute;
   top: calc(100% + var(--espacio-2));
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0; /* sin left:50% — components.css maneja visibilidad */
   z-index: var(--z-dropdown);
   min-width: var(--navbar-dropdown-min-w);
-}
-
-/* Abierto vía JS (data-js="dropdown-trigger" aria-expanded="true") */
-.navbar__item--has-dropdown:is(:hover, :focus-within) .navbar__submenu,
-.navbar__submenu--abierto {
-  display: block;
 }
 
 /* En mobile el submenu es accordion (inline, no absolute) */
